@@ -353,6 +353,55 @@ class Survey(Section):
 
                     translations_trans_key[media_type] = media
 
+    def _itext_nodes(self, translation):
+        for label_name, content in translation.items():
+            itext_nodes = []
+            label_type = label_name.partition(":")[-1]
+
+            if type(content) is not dict:
+                raise Exception()
+
+            if "long" in content and content["long"] == 'NO_LABEL':
+                continue
+
+            for media_type, media_value in content.items():
+
+                # There is a odk/jr bug where hints can't have a value
+                # for the "form" attribute.
+                # This is my workaround.
+                if label_type == u"hint":
+                    value, output_inserted = \
+                        self.insert_output_values(media_value)
+                    itext_nodes.append(
+                        node("value", value, toParseString=output_inserted)
+                    )
+                    continue
+
+                if media_type == "long":
+                    value, output_inserted = \
+                        self.insert_output_values(media_value)
+                    # I'm ignoring long types for now because I don't know
+                    # how they are supposed to work.
+                    itext_nodes.append(
+                        node("value", value, toParseString=output_inserted)
+                    )
+                elif media_type == "image":
+                    value, output_inserted = \
+                        self.insert_output_values(media_value)
+                    itext_nodes.append(
+                        node("value", "jr://images/" + value,
+                             form=media_type,
+                             toParseString=output_inserted)
+                    )
+                else:
+                    value, output_inserted = \
+                        self.insert_output_values(media_value)
+                    itext_nodes.append(
+                        node("value", "jr://" + media_type + "/" + value,
+                            form=media_type,
+                            toParseString=output_inserted))
+            yield(itext_nodes, label_name)
+
     def itext(self):
         """
         This function creates the survey's itext nodes from _translations
@@ -368,52 +417,8 @@ class Survey(Section):
             else:
                 result.append(node("translation", lang=lang))
 
-            for label_name, content in translation.items():
-                itext_nodes = []
-                label_type = label_name.partition(":")[-1]
-
-                if type(content) is not dict:
-                    raise Exception()
-
-                for media_type, media_value in content.items():
-
-                    # There is a odk/jr bug where hints can't have a value
-                    # for the "form" attribute.
-                    # This is my workaround.
-                    if label_type == u"hint":
-                        value, output_inserted = \
-                            self.insert_output_values(media_value)
-                        itext_nodes.append(
-                            node("value", value, toParseString=output_inserted)
-                        )
-                        continue
-
-                    if media_type == "long":
-                        value, output_inserted = \
-                            self.insert_output_values(media_value)
-                        # I'm ignoring long types for now because I don't know
-                        # how they are supposed to work.
-                        itext_nodes.append(
-                            node("value", value, toParseString=output_inserted)
-                        )
-                    elif media_type == "image":
-                        value, output_inserted = \
-                            self.insert_output_values(media_value)
-                        itext_nodes.append(
-                            node("value", "jr://images/" + value,
-                                 form=media_type,
-                                 toParseString=output_inserted)
-                        )
-                    else:
-                        value, output_inserted = \
-                            self.insert_output_values(media_value)
-                        itext_nodes.append(
-                            node("value", "jr://" + media_type + "/" + value,
-                                 form=media_type,
-                                 toParseString=output_inserted))
-
-                result[-1].appendChild(
-                    node("text", *itext_nodes, id=label_name))
+            for nodes, label_name in self._itext_nodes(translation):
+                result[-1].appendChild(node("text", *nodes, id=label_name))
 
         return node("itext", *result)
 
