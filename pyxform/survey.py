@@ -435,21 +435,12 @@ class Survey(Section):
         # TODO: check out pyxml
         # http://ronrothman.com/public/leftbraned/xml-dom-minidom-toprettyxml-and-silly-whitespace/
         xml_with_linebreaks = self.xml().toprettyxml(indent='  ')
-
-        # Trim whitespace from text nodes
-        inline_output = re.compile('([^/]>)\n\s*([^<>\s].*?\n\s*</)', re.DOTALL)\
-            .sub('\g<1>\g<2>', xml_with_linebreaks)
-        inline_output = re.compile('(>\n\s*[^<>\s].*?)\n\s*</', re.DOTALL)\
-            .sub('\g<1></', inline_output)
-
-        # Trim linebreaks around output nodes
-        inline_output = re.compile('\n.*(<output.*>)\n(  )*')\
-            .sub('\g<1>', inline_output)
-
-        # Remove whitespace from empty labels
+        text_re = re.compile('>\n\s+([^<>\s].*?)\n\s+</', re.DOTALL)
+        output_re = re.compile('\n.*(<output.*>)\n(  )*')
+        pretty_xml = text_re.sub('>\g<1></', xml_with_linebreaks)
+        inline_output = output_re.sub('\g<1>', pretty_xml)
         inline_output = re.compile('<label>\s*\n*\s*\n*\s*</label>')\
             .sub('<label></label>', inline_output)
-
         return '<?xml version="1.0"?>\n' + inline_output
 
     def __repr__(self):
