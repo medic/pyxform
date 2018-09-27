@@ -275,6 +275,13 @@ class SurveyElement(dict):
         return type(self.label) is dict or (
             type(self.media) is dict and len(self.media) > 0)
 
+    def has_label(self):
+        if 'label' in self:
+            if isinstance(self['label'], dict):
+                return len([v for v in self['label'].values() if v != 'NO_LABEL'])
+            return len(self['label'])
+        return False
+
     # XML generating functions, these probably need to be moved around.
     def xml_label(self):
         if self.needs_itext_ref():
@@ -302,15 +309,16 @@ class SurveyElement(dict):
         is a hint one node for the hint.
         """
         result = []
-        if self.label or self.media:
-            result.append(self.xml_label())
-        if self.hint:
-            result.append(self.xml_hint())
+        if self.has_label() or self.media:
+            if self.label or self.media:
+                result.append(self.xml_label())
+            if self.hint:
+                result.append(self.xml_hint())
 
-        if len(result) == 0:
-            msg = "The survey element named '%s' " \
-                  "has no label or hint." % self.name
-            raise PyXFormError(msg)
+            if len(result) == 0:
+                msg = "The survey element named '%s' " \
+                      "has no label or hint." % self.name
+                raise PyXFormError(msg)
 
         return result
 

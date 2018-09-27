@@ -142,12 +142,8 @@ class GroupedSection(Section):
         if not self.get('flat'):
             attributes['ref'] = self.get_xpath()
 
-        if 'label' in self and len(self['label']) > 0:
-            if isinstance(self['label'], dict) and \
-                len([v for v in self['label'].values() if v != 'NO_LABEL']):
-               children.append(self.xml_label())
-            else:
-                children.append(self.xml_label())
+        if self.has_label():
+            children.append(self.xml_label())
 
         for n in Section.xml_control(self):
             children.append(n)
