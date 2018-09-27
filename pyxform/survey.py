@@ -354,7 +354,7 @@ class Survey(Section):
                     translations_trans_key[media_type] = media
 
     def _itext_nodes(self, translation):
-        for label_name in sorted(translation.items()):
+        for label_name in sorted(translation.keys()):
             content = translation[label_name]
             itext_nodes = []
             label_type = label_name.partition(":")[-1]
