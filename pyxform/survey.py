@@ -354,7 +354,8 @@ class Survey(Section):
                     translations_trans_key[media_type] = media
 
     def _itext_nodes(self, translation):
-        for label_name, content in translation.items():
+        for label_name in sorted(translation.keys()):
+            content = translation[label_name]
             itext_nodes = []
             label_type = label_name.partition(":")[-1]
 
@@ -410,7 +411,8 @@ class Survey(Section):
         @see http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines
         """
         result = []
-        for lang, translation in self._translations.items():
+        for lang in sorted(self._translations.keys()):
+            translation = self._translations[lang]
             if lang == self.default_language:
                 result.append(
                     node("translation", lang=lang, default=u"true()"))
