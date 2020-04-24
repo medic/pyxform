@@ -179,6 +179,14 @@ QUESTION_TYPE_DICT = \
                 "type": "db:riposte_cabinet"
             }
         },
+        "db:riposte": {
+            "control": {
+                "tag": "input"
+            },
+            "bind": {
+                "type": "db:riposte"
+            }
+        },
         "db:clinic": {
             "control": {
                 "tag": "input"
