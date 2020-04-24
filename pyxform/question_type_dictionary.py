@@ -163,6 +163,22 @@ QUESTION_TYPE_DICT = \
                 "type": "db:person"
             }
         },
+        "db:investigator_person": {
+            "control": {
+                "tag": "input"
+            },
+            "bind": {
+                "type": "db:investigator_person"
+            }
+        },
+        "db:riposte_cabinet": {
+            "control": {
+                "tag": "input"
+            },
+            "bind": {
+                "type": "db:riposte_cabinet"
+            }
+        },
         "db:clinic": {
             "control": {
                 "tag": "input"
