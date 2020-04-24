@@ -163,6 +163,14 @@ QUESTION_TYPE_DICT = \
                 "type": "db:person"
             }
         },
+        "db:investigator": {
+            "control": {
+                "tag": "input"
+            },
+            "bind": {
+                "type": "db:investigator"
+            }
+        },
         "db:investigator_person": {
             "control": {
                 "tag": "input"
