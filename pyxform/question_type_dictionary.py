@@ -163,6 +163,14 @@ QUESTION_TYPE_DICT = \
                 "type": "db:person"
             }
         },
+        "db:rg_riposte": {
+            "control": {
+                "tag": "input"
+            },
+            "bind": {
+                "type": "db:rg_riposte"
+            }
+        },
         "db:investigator": {
             "control": {
                 "tag": "input"
