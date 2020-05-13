@@ -155,6 +155,14 @@ QUESTION_TYPE_DICT = \
                 "type": "string"
             }
         },
+        "select-contact": {
+            "control": {
+                "tag": "input"
+            },
+            "bind": {
+                "type": "select-contact"
+            }
+        },
         "db:person": {
             "control": {
                 "tag": "input"
