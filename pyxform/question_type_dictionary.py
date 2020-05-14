@@ -160,7 +160,7 @@ QUESTION_TYPE_DICT = \
                 "tag": "input"
             },
             "bind": {
-                "type": "select-contact"
+                "type": "string"
             }
         },
         "db:person": {
