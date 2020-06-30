@@ -936,5 +936,13 @@ QUESTION_TYPE_DICT = \
             "bind": {
                 "type": "binary"
             }
+        },
+        "db:phone_owner": {
+            "control": {
+                "tag": "input"
+            },
+            "bind": {
+                "type": "db:phone_owner"
+            }
         }
     }
