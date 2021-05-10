@@ -33,6 +33,9 @@ class Section(SurveyElement):
         # Resolve field references in attributes
         for key, value in attributes.items():
             attributes[key] = survey.insert_xpaths(value)
+
+        if self.name == u"meta":
+            attributes[u"tag"] = u"hidden"
         result = node(self.name, **attributes)
         for child in self.children:
             if child.get(u"flat"):
@@ -139,12 +142,8 @@ class GroupedSection(Section):
         if not self.get('flat'):
             attributes['ref'] = self.get_xpath()
 
-        if 'label' in self and len(self['label']) > 0:
-            if isinstance(self['label'], dict) and \
-                len([v for v in self['label'].values() if v != 'NO_LABEL']):
-               children.append(self.xml_label())
-            else:
-                children.append(self.xml_label())
+        if self.has_label():
+            children.append(self.xml_label())
 
         for n in Section.xml_control(self):
             children.append(n)
