@@ -28,6 +28,14 @@ def generate_new_dict():
 
 QUESTION_TYPE_DICT = \
     {
+        "binary": {
+            "control": {
+                "tag": "input"
+            },
+            "bind": {
+                "type": "binary"
+            }
+        },
         "q picture": {
             "control": {
                 "tag": "upload",
@@ -116,7 +124,6 @@ QUESTION_TYPE_DICT = \
             }
         },
         "location": {
-
             "control": {
                 "tag": "input"
             },
