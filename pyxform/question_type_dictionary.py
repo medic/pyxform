@@ -33,6 +33,9 @@ QUESTION_TYPE_DICT = \
                 "tag": "input"
             },
             "bind": {
+                "type": "string"
+            }
+            "media": {
                 "type": "binary"
             }
         },
