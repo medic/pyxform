@@ -29,7 +29,9 @@ def generate_new_dict():
 QUESTION_TYPE_DICT = \
     {
         "binary": {
-            "type": "binary",
+            "instance": {
+                "tag":"binary"
+            },
             "control": {
                 "tag": "input"
             },
