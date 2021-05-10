@@ -29,14 +29,12 @@ def generate_new_dict():
 QUESTION_TYPE_DICT = \
     {
         "binary": {
+            "type": "binary",
             "control": {
                 "tag": "input"
             },
             "bind": {
                 "type": "string"
-            },
-            "media": {
-                "type": "binary"
             }
         },
         "q picture": {
