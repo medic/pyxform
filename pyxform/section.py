@@ -42,6 +42,9 @@ class Section(SurveyElement):
         # Resolve field references in attributes
         for key, value in attributes.items():
             attributes[key] = survey.insert_xpaths(value, self)
+
+        if self.name == "meta":
+            attributes["tag"] = "hidden"
         result = node(self.name, **attributes)
 
         for child in self.children:

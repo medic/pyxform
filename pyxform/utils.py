@@ -82,7 +82,7 @@ def node(*args, **kwargs):
     kwargs -- attributes
     returns a xml.dom.minidom.Element
     """
-    blocked_attributes = ["tag"]
+#     blocked_attributes = ["tag"]
     tag = args[0] if len(args) > 0 else kwargs["tag"]
     args = args[1:]
     result = DetachableElement(tag)
@@ -94,7 +94,8 @@ def node(*args, **kwargs):
     # attributes to guarantee a consistent order across Python versions.
     # See pyxform_test_case.reorder_attributes for details.
     for k, v in iter(sorted(kwargs.items())):
-        if k in blocked_attributes:
+#         if k in blocked_attributes:
+        if k == 'tag' and v == tag:
             continue
         if k == "toParseString":
             if v is True and len(unicode_args) == 1:
