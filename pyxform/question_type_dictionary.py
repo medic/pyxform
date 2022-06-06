@@ -69,6 +69,46 @@ QUESTION_TYPE_DICT = {
         }
     },
     "string": {"control": {"tag": "input"}, "bind": {"type": "string"}},
+    "db:person": {
+        "control": {
+            "tag": "input"
+        },
+        "bind": {
+            "type": "db:person"
+        }
+    },
+    "db:clinic": {
+        "control": {
+            "tag": "input"
+        },
+        "bind": {
+            "type": "db:clinic"
+        }
+    },
+    "db:health_center": {
+        "control": {
+            "tag": "input"
+        },
+        "bind": {
+            "type": "db:health_center"
+        }
+    },
+    "db:district_hospital": {
+        "control": {
+            "tag": "input"
+        },
+        "bind": {
+            "type": "db:district_hospital"
+        }
+    },
+    "tel": {
+        "control": {
+            "tag": "input"
+        },
+        "bind": {
+            "type": "tel"
+        }
+    },
     "q string": {"control": {"tag": "input"}, "bind": {"type": "string"}},
     "imei": {
         "bind": {
