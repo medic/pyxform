@@ -87,3 +87,16 @@ To check out the documentation for pyxform do the following::
 Change Log
 =========
 `Changelog <CHANGES.txt>`_
+
+Version Management
+================
+This project uses semantic versioning. To create a new release:
+
+1. Update version in `pyxform/__init__.py`
+2. Update CHANGES.txt with the new version and changes
+3. Create and push a new tag:
+   
+   git tag -a v0.9.24 -m "Release version 0.9.24"
+   git push origin v0.9.24
+
+The GitHub Actions workflow will automatically create a GitHub Release and publish to PyPI when a new tag is pushed.
