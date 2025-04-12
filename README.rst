@@ -2,8 +2,8 @@
 pyxform v0.9
 ============
 
-.. image:: https://travis-ci.org/XLSForm/pyxform.svg?branch=master
-    :target: https://travis-ci.org/XLSForm/pyxform
+.. image:: https://github.com/XLSForm/pyxform/workflows/CI/badge.svg
+    :target: https://github.com/XLSForm/pyxform/actions
 
 pyxform is a Python library that makes writing XForms for ODK Collect and enketo
 easy by converting XLS(X) spreadsheets into XForms. It is used as a library in a number of tools including `the ODK online converter <http://opendatakit.org/xiframe/>`_ and `Ona <https://ona.io>`_.
