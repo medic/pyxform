@@ -2,8 +2,8 @@
 pyxform v0.9
 ============
 
-.. image:: https://travis-ci.org/XLSForm/pyxform.svg?branch=master
-    :target: https://travis-ci.org/XLSForm/pyxform
+.. image:: https://github.com/XLSForm/pyxform/workflows/CI/badge.svg
+    :target: https://github.com/XLSForm/pyxform/actions
 
 pyxform is a Python library that makes writing XForms for ODK Collect and enketo
 easy by converting XLS(X) spreadsheets into XForms. It is used as a library in a number of tools including `the ODK online converter <http://opendatakit.org/xiframe/>`_ and `Ona <https://ona.io>`_.
@@ -87,3 +87,16 @@ To check out the documentation for pyxform do the following::
 Change Log
 =========
 `Changelog <CHANGES.txt>`_
+
+Version Management
+================
+This project uses semantic versioning. To create a new release:
+
+1. Update version in `pyxform/__init__.py`
+2. Update CHANGES.txt with the new version and changes
+3. Create and push a new tag:
+   
+   git tag -a v0.9.24 -m "Release version 0.9.24"
+   git push origin v0.9.24
+
+The GitHub Actions workflow will automatically create a GitHub Release and publish to PyPI when a new tag is pushed.
