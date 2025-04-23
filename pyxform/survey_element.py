@@ -271,7 +271,14 @@ class SurveyElement(dict):
         )
 
     def _translation_path(self, display_element):
-        return self.get_xpath() + ":" + display_element
+        from pyxform.constants import CHT_SIMPLIFIED_LANGUAGE_FORMAT
+
+        if CHT_SIMPLIFIED_LANGUAGE_FORMAT:
+            # Use simplified format: label::en instead of label::/data/label:en
+            return display_element
+        else:
+            # Use standard format: label::/data/label:en
+            return self.get_xpath() + ":" + display_element
 
     def get_translations(self, default_language):
         """
@@ -420,7 +427,9 @@ class SurveyElement(dict):
         """
         result = []
         label_appended = False
-        if self.label or self.media:
+
+        # Handle empty label case for CHT compatibility
+        if self.label == "" or self.label or self.media:
             result.append(self.xml_label())
             label_appended = True
 
@@ -433,7 +442,7 @@ class SurveyElement(dict):
         if len(result) == 0:
             raise PyXFormError(msg)
         # Guidance hint alone is not OK since they may be hidden by default.
-        if not any((self.label, self.media, self.hint)) and self.guidance_hint:
+        if not any((self.label == "", self.label, self.media, self.hint)) and self.guidance_hint:
             raise PyXFormError(msg)
 
         return result

@@ -101,6 +101,9 @@ CURRENT_XFORMS_VERSION = "1.0.0"
 
 DEPRECATED_DEVICE_ID_METADATA_FIELDS = ["subscriberid", "simserial"]
 
+# CHT-specific constants
+CHT_SIMPLIFIED_LANGUAGE_FORMAT = True  # Use label::en instead of label::/data/label:en
+
 AUDIO_QUALITY_VOICE_ONLY = "voice-only"
 AUDIO_QUALITY_LOW = "low"
 AUDIO_QUALITY_NORMAL = "normal"
