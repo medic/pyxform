@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ medic-conf-1.17 ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ medic-conf-1.17]
 
 jobs:
   build:
