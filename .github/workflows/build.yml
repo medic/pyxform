@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [2.7, 3.4, 3.5]
+        python-version: [3.12]
         runtests:
           - nosetests
           - "nosetests --tests pyxform/tests_v1/"
