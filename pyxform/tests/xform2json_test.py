@@ -3,9 +3,13 @@ from pyxform.builder import create_survey_from_path
 from pyxform.xform2json import create_survey_element_from_xml, _try_parse
 import os
 from pyxform.tests import utils
-from unittest2 import TestCase
+
 from xml.etree.ElementTree import ParseError
 
+try:
+    from unittest2 import TestCase
+except ImportError:
+    from unittest import TestCase
 
 class DumpAndLoadXForm2JsonTests(utils.XFormTestCase):
 

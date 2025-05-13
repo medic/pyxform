@@ -1,9 +1,12 @@
 from pyxform.odk_validate import _cleanup_errors
 
-from unittest2 import TestCase
 from pyxform.tests.utils import prep_class_config
 
-
+try:
+    from unittest import TestCase
+except ImportError:
+    from unittest2 import TestCase
+    
 class ODKValidateTests(TestCase):
     maxDiff = None
 
