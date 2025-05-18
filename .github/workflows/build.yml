@@ -40,6 +40,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -q -r requirements.pip
 
+    - name: Install pytest
+      run: |
+        pip install pytest
+        
     - name: Run a minimal test subset
       run: |
         pytest pyxform/tests/xml_tests.py
