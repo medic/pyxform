@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.10.0, 3.11.0]
+        python-version: [3.11.0]
         runtests:
           - nosetests
           - "nosetests --tests pyxform/tests_v1/"
@@ -40,6 +40,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -q -r requirements.pip
 
-    # - name: Run tests
-    #   run: |
-    #     python setup.py ${{ matrix.runtests }}
+    - name: Run tests
+      run: |
+        python setup.py ${{ matrix.runtests }}
