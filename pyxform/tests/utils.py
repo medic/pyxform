@@ -1,14 +1,9 @@
 import os
 from pyxform import file_utils
 from pyxform.builder import create_survey, create_survey_from_path
+from unittest2 import TestCase
 import xml.etree.ElementTree as ETree
 from formencode.doctest_xml_compare import xml_compare
-
-try:
-    from unittest2 import TestCase
-except ImportError:
-    from unittest import TestCase
-
 try:
     import ConfigParser
     configparser = ConfigParser

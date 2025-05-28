@@ -3,12 +3,9 @@ import re
 import codecs
 import json
 import copy
+import unicodecsv as csv
 import xlrd
 
-try:
-    import unicodecsv as csv
-except ImportError:
-    import csv
 try:
     unicode("str")
 except NameError:

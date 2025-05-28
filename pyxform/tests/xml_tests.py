@@ -1,13 +1,10 @@
 from pyxform import create_survey_from_xls
 import re
 from pyxform.tests import utils
+from unittest2 import TestCase
 from xml.dom.minidom import getDOMImplementation
 from pyxform.utils import node
 
-try:
-    from unittest2 import TestCase
-except ImportError:
-    from unittest import TestCase
 
 class XMLTests(utils.XFormTestCase):
     def setUp(self):

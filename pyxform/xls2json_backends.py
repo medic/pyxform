@@ -3,6 +3,7 @@ XLS-to-dict and csv-to-dict are essentially backends for xls2json.
 """
 import xlrd
 from xlrd import XLRDError
+import unicodecsv as csv
 from io import BytesIO
 from pyxform import constants
 import re
@@ -12,10 +13,6 @@ from pyxform.utils import unicode, basestring, unichr
 from functools import reduce
 from collections import OrderedDict
 
-try:
-    import unicodecsv as csv
-except ImportError:
-    import csv
 
 def _list_to_dict_list(list_items):
     """
