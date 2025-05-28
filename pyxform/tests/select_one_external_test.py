@@ -1,4 +1,3 @@
-import unittest2 as unittest
 import codecs
 import os
 import pyxform
@@ -7,6 +6,10 @@ from pyxform.tests.utils import XFormTestCase
 
 DIR = os.path.dirname(__file__)
 
+try:
+    import unittest2 as unittest
+except ImportError:
+    import unittest
 
 class MainTest(XFormTestCase):
     

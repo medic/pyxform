@@ -1,7 +1,7 @@
 """
 Some tests for the new (v0.9) spec is properly implemented.
 """
-import unittest2 as unittest
+
 import codecs
 import os
 import pyxform
@@ -10,6 +10,11 @@ from pyxform.xls2json import SurveyReader
 from pyxform.tests.utils import XFormTestCase
 from pyxform.errors import PyXFormError
 
+try:
+    import unittest2 as unittest
+except ImportError:
+    import unittest
+    
 DIR = os.path.dirname(__file__)
 
 
