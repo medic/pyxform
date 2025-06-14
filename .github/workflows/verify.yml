@@ -1,6 +1,11 @@
 name: Verify
 
-on: [push, pull_request]
+# on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+      - xlsform_v3.0.1
 
 jobs:
   lint:
