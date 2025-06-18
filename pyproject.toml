@@ -1,5 +1,5 @@
 [project]
-name = "pyxform"
+name = "pyxform-medic"
 version = "4.0.0"
 authors = [
   {name = "github.com/xlsform", email = "support@getodk.org"},
@@ -27,7 +27,7 @@ Homepage = "https://pypi.python.org/pypi/pyxform/"
 Repository = "https://github.com/XLSForm/pyxform/"
 
 [project.scripts]
-xls2xform = "pyxform.xls2xform:main_cli"
+xls2xform-medic = "pyxform.xls2xform:main_cli"
 pyxform_validator_update = "pyxform.validators.updater:main_cli"
 
 [build-system]
