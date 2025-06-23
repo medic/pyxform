@@ -388,6 +388,14 @@ _QUESTION_TYPE_DICT = {
         "control": {"tag": "trigger"},
         "bind": {"type": "geopoint"},
     },
+    "tel": {
+            "control": {
+                "tag": "input"
+            },
+            "bind": {
+                "type": "tel"
+            }
+        },
 }
 
 # Read-only view of the types.
