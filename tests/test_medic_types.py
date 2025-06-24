@@ -6,12 +6,12 @@ class CustomTypesTest(PyxformTestCase):
 
     def test_all_db_types_with_helpers(self):
         xls = """
-        | survey                               |               |                |
-        | type                                 | name          | label::en      |
-        | db:person                            | person        | Person         |
-        | db:clinic                            | clinic        | Clinic         |
-        | db:health_center                     | health_center | Health Center  |
-        | db:district_hospital                 | district_hospital | District Hospital |
+        | survey           |               |                |
+        | type             | name          | label::en      |
+        | db:person        | person        | Person         |
+        | db:clinic        | clinic        | Clinic         |
+        | db:health_center | health_center | Health Center  |
+        | db:district_hospital | district_hospital | District Hospital |
         """
 
         # Build a list of (name, expected_type)
@@ -36,11 +36,11 @@ class CustomTypesTest(PyxformTestCase):
             xml__xpath_match=bind_xpaths + input_xpaths
         )
 
-     def test_tel_type_with_helpers(self):
+    def test_tel_type_with_helpers(self):
         xls = """
-        | survey |          |            |
-        | type   | name     | label::en  |
-        | tel    | phone    | Phone      |
+        | survey |      |           |
+        | type   | name | label::en |
+        | tel    | phone| Phone     |
         """
         # xpq can build the bind test
         xp_bind = xpq.model_instance_bind("phone", "tel")
