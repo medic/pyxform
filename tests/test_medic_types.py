@@ -1,5 +1,8 @@
-from pyxform.tests.pyxform_test_case import PyxformTestCase
-from tests.xpath_helpers.choices import xpc
+"""
+CustomTypesTest base class to perform tests on medic type fields.
+"""
+
+from tests.pyxform_test_case import PyxformTestCase
 from tests.xpath_helpers.questions import xpq
 
 class CustomTypesTest(PyxformTestCase):
@@ -27,8 +30,7 @@ class CustomTypesTest(PyxformTestCase):
         #  2) `input` XPaths via xpq.body_label_inline
         bind_xpaths  = [xpq.model_instance_bind(name, dtype) for name, dtype in db_types]
         input_xpaths = [xpq.body_label_inline("input", name, label)
-                        for (name, dtype), label in zip(db_types,
-                            ["Person", "Clinic", "Health Center", "District Hospital"])]
+                        for (name, dtype), label in zip(db_types, ["Person", "Clinic", "Health Center", "District Hospital"], strict=True)]
 
         # Run the conversion and assert all binds and inputs exist
         self.assertPyxformXform(
@@ -52,3 +54,4 @@ class CustomTypesTest(PyxformTestCase):
             xml__xpath_match=[xp_input],
             xml__xpath_count=[(xp_bind, 1)],
         )
+        
