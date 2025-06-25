@@ -5,6 +5,7 @@ CustomTypesTest base class to perform tests on medic type fields.
 from tests.pyxform_test_case import PyxformTestCase
 from tests.xpath_helpers.questions import xpq
 
+
 class CustomTypesTest(PyxformTestCase):
 
     def test_all_db_types_with_helpers(self):
@@ -54,4 +55,3 @@ class CustomTypesTest(PyxformTestCase):
             xml__xpath_match=[xp_input],
             xml__xpath_count=[(xp_bind, 1)],
         )
-        
