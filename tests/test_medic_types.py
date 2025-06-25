@@ -1,12 +1,11 @@
 import re
 import textwrap
-from typing import Dict, List
-from pyxform.xls2xform import convert
+
 from tests.pyxform_test_case import PyxformTestCase
 from tests.xpath_helpers.questions import xpq
 
 
-def markdown_to_workbook_dict(md: str) -> Dict[str, List[Dict[str, str]]]:
+def markdown_to_workbook_dict(md: str) -> dict[str, list[dict[str, str]]]:
     sheet_sections = re.split(r"^###\s+", md, flags=re.MULTILINE)[1:]
     survey_data = []
 
@@ -28,7 +27,7 @@ def markdown_to_workbook_dict(md: str) -> Dict[str, List[Dict[str, str]]]:
             values = [v.strip() for v in line.split("|") if v.strip()]
             if len(values) != len(headers):
                 raise ValueError(f"Row length mismatch in {sheet_name}: {line}")
-            survey_data.append(dict(zip(headers, values)))
+            survey_data.append(dict(zip(headers, values, strict=False)))
 
     return {"survey": survey_data}
 
