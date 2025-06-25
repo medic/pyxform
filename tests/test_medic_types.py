@@ -1,6 +1,7 @@
 from tests.pyxform_test_case import PyxformTestCase
 from tests.xpath_helpers.questions import xpq
 
+
 class CustomTypesTest(PyxformTestCase):
 
     def test_all_db_types_with_helpers(self):
@@ -24,7 +25,7 @@ class CustomTypesTest(PyxformTestCase):
         bind_xpaths = [xpq.model_instance_bind(name, dtype) for name, dtype in db_types]
         input_xpaths = [xpq.body_label_inline("input", name, label)
                         for (name, dtype), label in zip(db_types,
-                            ["Person", "Clinic", "Health Center", "District Hospital"])]
+                            ["Person", "Clinic", "Health Center", "District Hospital"], strict=True)]
 
         self.assertPyxformXform(
             md=xls,
