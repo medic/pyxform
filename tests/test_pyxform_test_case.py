@@ -254,7 +254,9 @@ class TestPyxformTestCaseXmlXpath(PyxformTestCase):
             run_odk_validate=False,
         )
 
-    @unittest.skip("Scenario '1_xpath_n_match' NA for xpath_match: expects 1 match only.")
+    @unittest.skip(
+        "Scenario '1_xpath_n_match' NA for xpath_match: expects 1 match only."
+    )
     def test_xml__1_xpath_n_match_pass__xpath_match(self):
         pass  # Test case included to document that there's no way to pass this scenario.
 
@@ -301,7 +303,9 @@ class TestPyxformTestCaseXmlXpath(PyxformTestCase):
             run_odk_validate=False,
         )
 
-    @unittest.skip("Scenario 'n_xpath_n_match' NA for xpath_match: expects 1 match only.")
+    @unittest.skip(
+        "Scenario 'n_xpath_n_match' NA for xpath_match: expects 1 match only."
+    )
     def test_xml__n_xpath_n_match_pass__xpath_match(self):
         pass  # Test case included to document that there's no way to pass this scenario.
 

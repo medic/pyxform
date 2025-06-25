@@ -804,7 +804,9 @@ class TestDynamicDefaultSimpleInput(PyxformTestCase):
                     start = perf_counter()
                     convert(xlsform=case)
                     results.append(perf_counter() - start)
-                    peak_memory_usage = max(process.memory_info().rss, peak_memory_usage)
+                    peak_memory_usage = max(
+                        process.memory_info().rss, peak_memory_usage
+                    )
                     runs += 1
                 print(
                     name,

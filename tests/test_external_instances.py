@@ -231,7 +231,9 @@ class ExternalInstanceTests(PyxformTestCase):
                 '<instance id="fruits" src="jr://file-csv/fruits.csv"/>',
             ],
             xml__xpath_match=[
-                xpc.model_instance_choices_label("states", (("1", "Pass"), ("2", "Fail")))
+                xpc.model_instance_choices_label(
+                    "states", (("1", "Pass"), ("2", "Fail"))
+                )
             ],
         )
 

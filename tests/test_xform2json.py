@@ -128,6 +128,8 @@ class TestXForm2JSON(PyxformTestCase):
         result = convert(xlsform=md)
         expected = result.xform
         generated_json = result._survey.to_json()
-        survey_from_builder = create_survey_element_from_dict(json.loads(generated_json))
+        survey_from_builder = create_survey_element_from_dict(
+            json.loads(generated_json)
+        )
         observed = survey_from_builder.to_xml(pretty_print=False)
         self.assertEqual(expected, observed)

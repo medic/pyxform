@@ -50,7 +50,9 @@ class TestValidatorUtil(TestCase):
 
     def test_jarfile_error_returned_asis(self):
         """Should return a jarfile error as-is, to avoid tokenising the path."""
-        test_str = self.config.get(self.cls_name, "test_jarfile_error_returned_asis_test")
+        test_str = self.config.get(
+            self.cls_name, "test_jarfile_error_returned_asis_test"
+        )
         expected_str = self.config.get(
             self.cls_name, "test_jarfile_error_returned_asis_expected"
         )

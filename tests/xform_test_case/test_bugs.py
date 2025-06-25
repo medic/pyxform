@@ -110,7 +110,9 @@ class TestChoiceNameAsType(TestCase):
     def test_choice_name_as_type(self):
         filename = "choice_name_as_type.xls"
         path_to_excel_file = os.path.join(example_xls.PATH, filename)
-        xls_reader = SurveyReader(path_to_excel_file, default_name="choice_name_as_type")
+        xls_reader = SurveyReader(
+            path_to_excel_file, default_name="choice_name_as_type"
+        )
         survey_dict = xls_reader.to_json_dict()
         self.assertTrue(has_external_choices(survey_dict))
 

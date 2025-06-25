@@ -19,7 +19,9 @@ class ChoicesSheetTest(PyxformTestCase):
             |          | choices            | 2    | Two   |
             """,
             xml__xpath_match=[
-                xpc.model_instance_choices_label("choices", (("1", "One"), ("2", "Two"))),
+                xpc.model_instance_choices_label(
+                    "choices", (("1", "One"), ("2", "Two"))
+                ),
                 xpq.body_select1_itemset("a"),
             ],
         )
@@ -39,7 +41,9 @@ class ChoicesSheetTest(PyxformTestCase):
             |          | choices            | 2    | Two   |
             """,
             xml__xpath_match=[
-                xpc.model_instance_choices_label("choices", (("1", "One"), ("2", "Two"))),
+                xpc.model_instance_choices_label(
+                    "choices", (("1", "One"), ("2", "Two"))
+                ),
                 xpq.body_select1_itemset("a"),
             ],
         )

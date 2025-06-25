@@ -55,7 +55,9 @@ class EntitiesUpdateTest(PyxformTestCase):
                 ("/h:html/h:head/x:model/x:instance/x:data/x:meta/x:entity/@create", 0),
                 ("/h:html/h:head/x:model/x:setvalue", 0),
             ],
-            xml__contains=['xmlns:entities="http://www.opendatakit.org/xforms/entities"'],
+            xml__contains=[
+                'xmlns:entities="http://www.opendatakit.org/xforms/entities"'
+            ],
         )
 
     def test_entity_id_with_creation_condition_only__errors(self):

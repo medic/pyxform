@@ -21,7 +21,9 @@ class RangeWidgetTest(PyxformTestCase):
             """,
             xml__xpath_match=[
                 xpc.model_instance_choices_label("mylist", (("a", "A"), ("b", "B"))),
-                xpq.body_odk_rank_itemset("order"),  # also an implicit test for xmlns:odk
+                xpq.body_odk_rank_itemset(
+                    "order"
+                ),  # also an implicit test for xmlns:odk
                 "/h:html/h:head/x:model/x:bind[@nodeset='/test_name/order' and @type='odk:rank']",
             ],
         )
@@ -70,17 +72,25 @@ class RangeWidgetTest(PyxformTestCase):
             """,
             xml__xpath_match=[
                 xpc.model_instance_choices_itext("mylist", ("a", "b")),
-                xpq.body_odk_rank_itemset("order"),  # also an implicit test for xmlns:odk
+                xpq.body_odk_rank_itemset(
+                    "order"
+                ),  # also an implicit test for xmlns:odk
                 "/h:html/h:head/x:model/x:bind[@nodeset='/test_name/order' and @type='odk:rank']",
                 # All itemset translations.
-                xpc.model_itext_choice_text_label_by_pos("default", "mylist", ("A", "B")),
+                xpc.model_itext_choice_text_label_by_pos(
+                    "default", "mylist", ("A", "B")
+                ),
                 xpc.model_itext_choice_text_label_by_pos(
                     "French (fr)", "mylist", ("AA", "BB")
                 ),
                 # No non-itemset translations.
                 xpc.model_itext_no_text_by_id("default", "/test_name/order/a:label"),
                 xpc.model_itext_no_text_by_id("default", "/test_name/order/b:label"),
-                xpc.model_itext_no_text_by_id("French (fr)", "/test_name/order/a:label"),
-                xpc.model_itext_no_text_by_id("French (fr)", "/test_name/order/b:label"),
+                xpc.model_itext_no_text_by_id(
+                    "French (fr)", "/test_name/order/a:label"
+                ),
+                xpc.model_itext_no_text_by_id(
+                    "French (fr)", "/test_name/order/b:label"
+                ),
             ],
         )

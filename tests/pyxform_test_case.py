@@ -255,7 +255,9 @@ class PyxformTestCase(TestCase):
             for test_spec, key, test_func in string_test_specs:
                 if test_spec is not None:
                     for i in test_spec:
-                        test_func(content=get_xml_nodes_str(key), text=i, msg_prefix=key)
+                        test_func(
+                            content=get_xml_nodes_str(key), text=i, msg_prefix=key
+                        )
 
             def get_xpath_matcher_context():
                 return MatcherContext(

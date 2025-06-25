@@ -96,7 +96,9 @@ class TestSecondaryInstanceTest(PyxformTestCase):
             xml__xpath_match=[
                 # Consent
                 xpq.body_select1_itemset("consent"),
-                xpc.model_instance_choices_label("consent", (("y", "Yes"), ("n", "No"))),
+                xpc.model_instance_choices_label(
+                    "consent", (("y", "Yes"), ("n", "No"))
+                ),
                 xpc.model_itext_no_text_by_id("default", "/test_name/consent/y:label"),
                 xpc.model_itext_no_text_by_id("default", "/test_name/consent/n:label"),
                 # Mood

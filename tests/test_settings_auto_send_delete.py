@@ -45,7 +45,9 @@ class SettingsAutoSendDelete(PyxformTestCase):
             |          | auto_delete  | auto_send |           |
             |          | false        | false     |           |
             """,
-            xml__contains=['<submission orx:auto-delete="false" orx:auto-send="false"/>'],
+            xml__contains=[
+                '<submission orx:auto-delete="false" orx:auto-send="false"/>'
+            ],
         )
 
     def test_settings_without_submission_url_does_not_generate_method_attribute(self):

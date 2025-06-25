@@ -16,7 +16,9 @@ class Case:
 
     label: str
     match: set[str]
-    xpath: str = field(default_factory=lambda: xpq.body_input_label_output_value("note"))
+    xpath: str = field(
+        default_factory=lambda: xpq.body_input_label_output_value("note")
+    )
 
 
 class TestNotes(PyxformTestCase):
@@ -104,12 +106,16 @@ class TestNotes(PyxformTestCase):
             # Instance expression with predicate using pyxform token and function (double quotes).
             Case(
                 """instance("c2")/root/item[contains("name", ${q2})]/label""",
-                {"""instance("c2")/root/item[contains("name",  /test_name/q2 )]/label"""},
+                {
+                    """instance("c2")/root/item[contains("name",  /test_name/q2 )]/label"""
+                },
             ),
             # Instance expression with predicate using pyxform token and function (mixed quotes).
             Case(
                 """instance('c2')/root/item[contains("name", ${q2})]/label""",
-                {"""instance('c2')/root/item[contains("name",  /test_name/q2 )]/label"""},
+                {
+                    """instance('c2')/root/item[contains("name",  /test_name/q2 )]/label"""
+                },
             ),
             # Instance expression with predicate using pyxform token and equals.
             Case(

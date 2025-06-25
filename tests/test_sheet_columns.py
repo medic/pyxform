@@ -29,7 +29,9 @@ class InvalidSurveyColumnsTests(PyxformTestCase):
     def test_missing_name_but_has_alias_of_name(self):
         self.assertPyxformXform(
             name="invalidcols",
-            ss_structure={"survey": [{"value": "q1", "type": "text", "label": "label"}]},
+            ss_structure={
+                "survey": [{"value": "q1", "type": "text", "label": "label"}]
+            },
         )
 
     def test_label_or_hint__must_be_provided(self):

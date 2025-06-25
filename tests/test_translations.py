@@ -271,8 +271,12 @@ class TestTranslations(PyxformTestCase):
                 xp.question_itext_form("Kyrgyz", "audio", "something.mp3"),
                 xpq.body_select1_itemset("q1"),
                 xpc.model_instance_choices_itext("yn", ("0", "1")),
-                xpc.model_itext_choice_text_label_by_pos("default", "yn", ("No", "Yes")),
-                xpc.model_itext_choice_text_label_by_pos("Russian", "yn", ("Нет", "Да")),
+                xpc.model_itext_choice_text_label_by_pos(
+                    "default", "yn", ("No", "Yes")
+                ),
+                xpc.model_itext_choice_text_label_by_pos(
+                    "Russian", "yn", ("Нет", "Да")
+                ),
                 xpc.model_itext_choice_text_label_by_pos(
                     "Kyrgyz", "yn", ("Нет (ky)", "Да (ky)")
                 ),
@@ -340,8 +344,16 @@ class TestTranslations(PyxformTestCase):
                 "eng",
                 "c1",
                 (
-                    (("audio", "la-d.mp3"), ("image", "la-d.jpg"), ("video", "la-d.mkv")),
-                    (("audio", "lb-d.mp3"), ("image", "lb-d.jpg"), ("video", "lb-d.mkv")),
+                    (
+                        ("audio", "la-d.mp3"),
+                        ("image", "la-d.jpg"),
+                        ("video", "la-d.mkv"),
+                    ),
+                    (
+                        ("audio", "lb-d.mp3"),
+                        ("image", "lb-d.jpg"),
+                        ("video", "lb-d.mkv"),
+                    ),
                 ),
             ),
         ]
@@ -438,7 +450,9 @@ class TestTranslations(PyxformTestCase):
                     start = perf_counter()
                     convert(xlsform=case)
                     results.append(perf_counter() - start)
-                    peak_memory_usage = max(process.memory_info().rss, peak_memory_usage)
+                    peak_memory_usage = max(
+                        process.memory_info().rss, peak_memory_usage
+                    )
                     runs += 1
                 print(
                     name,
@@ -579,7 +593,9 @@ class TestTranslations(PyxformTestCase):
                 xpc.model_itext_choice_text_label_by_pos(
                     "en", "c1", ("-", "lb-e", "lc-e")
                 ),
-                xpc.model_itext_choice_text_label_by_pos("fr", "c1", ("-", "-", "lc-f")),
+                xpc.model_itext_choice_text_label_by_pos(
+                    "fr", "c1", ("-", "-", "lc-f")
+                ),
                 xpc.model_itext_choice_text_label_by_pos("de", "c1", ("-", "-", "-")),
                 xpc.model_itext_choice_media_by_pos(
                     "de",
@@ -879,7 +895,9 @@ class TestTranslationsSurvey(PyxformTestCase):
                 self.xp.question_itext_form("eng", "image", "greeting.jpg"),
                 self.xp.question_no_itext_form(DEFAULT_LANG, "image", "greeting.jpg"),
                 self.xp.question_itext_form("eng", "big-image", "greeting.jpg"),
-                self.xp.question_no_itext_form(DEFAULT_LANG, "big-image", "greeting.jpg"),
+                self.xp.question_no_itext_form(
+                    DEFAULT_LANG, "big-image", "greeting.jpg"
+                ),
                 self.xp.question_itext_form("eng", "video", "greeting.mkv"),
                 self.xp.question_no_itext_form(DEFAULT_LANG, "video", "greeting.mkv"),
                 self.xp.question_itext_form("eng", "audio", "greeting.mp3"),
@@ -1172,7 +1190,9 @@ class TestTranslationsChoices(PyxformTestCase):
                 self.xp.question_label_in_body("Question 1"),
                 xpq.body_select1_itemset("q1"),
                 xpc.model_instance_choices_itext("c1", ("na", "nb")),
-                xpc.model_itext_choice_text_label_by_pos("Eng (en)", "c1", ("la", "lb")),
+                xpc.model_itext_choice_text_label_by_pos(
+                    "Eng (en)", "c1", ("la", "lb")
+                ),
                 xpc.model_itext_choice_media_by_pos("Eng (en)", "c1", self.forms__ab),
             ],
         )
@@ -1218,7 +1238,9 @@ class TestTranslationsChoices(PyxformTestCase):
                 self.xp.question_label_in_body("Question 1"),
                 xpc.body_itemset_references_itext("select1", "q1", "c1"),
                 xpc.model_instance_choices_itext("c1", ("na", "nb")),
-                xpc.model_itext_choice_text_label_by_pos("Eng (en)", "c1", ("la", "lb")),
+                xpc.model_itext_choice_text_label_by_pos(
+                    "Eng (en)", "c1", ("la", "lb")
+                ),
                 xpc.model_itext_choice_media_by_pos("Eng (en)", "c1", self.forms__ab),
             ],
         )
@@ -1251,7 +1273,9 @@ class TestTranslationsChoices(PyxformTestCase):
                 xpc.model_itext_choice_media_by_pos(
                     DEFAULT_LANG, "c1", self.forms__l_audio
                 ),
-                xpc.model_no_itext_choice_media_by_pos("eng", "c1", self.forms__l_audio),
+                xpc.model_no_itext_choice_media_by_pos(
+                    "eng", "c1", self.forms__l_audio
+                ),
                 self.xp.language_is_default(DEFAULT_LANG),
                 self.xp.language_is_not_default("eng"),
             ],
@@ -1441,12 +1465,16 @@ class TestTranslationsChoices(PyxformTestCase):
                 xpc.model_instance_choices_itext("c1", ("na", "nb")),
                 # Output of a dash for empty translation is not a bug, it's a reminder /
                 # placeholder since XForms spec requires a value for every translation.
-                xpc.model_itext_choice_text_label_by_pos(DEFAULT_LANG, "c1", ("-", "-")),
+                xpc.model_itext_choice_text_label_by_pos(
+                    DEFAULT_LANG, "c1", ("-", "-")
+                ),
                 xpc.model_itext_choice_text_label_by_pos("eng", "c1", ("la-e", "lb-e")),
                 xpc.model_itext_choice_media_by_pos(
                     DEFAULT_LANG, "c1", self.forms__l_audio
                 ),
-                xpc.model_no_itext_choice_media_by_pos("eng", "c1", self.forms__l_audio),
+                xpc.model_no_itext_choice_media_by_pos(
+                    "eng", "c1", self.forms__l_audio
+                ),
                 self.xp.language_is_default(DEFAULT_LANG),
                 self.xp.language_is_not_default("eng"),
             ],
@@ -1704,7 +1732,9 @@ class TestTranslationsOrOther(PyxformTestCase):
                 xpc.model_itext_choice_text_label_by_pos(
                     "en", "c1", ("la-e", "lb-e", "Other")
                 ),
-                xpc.model_itext_choice_text_label_by_pos("fr", "c1", ("la-f", "-", "-")),
+                xpc.model_itext_choice_text_label_by_pos(
+                    "fr", "c1", ("la-f", "-", "-")
+                ),
                 """
                 /h:html/h:head/x:model/x:itext[
                   not(descendant::x:translation[@lang='default'])

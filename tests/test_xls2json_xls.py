@@ -29,7 +29,9 @@ class BasicXls2JsonApiTests(TestCase):
             self.assertEqual(json.load(expected), result._pyxform)
 
     def test_hidden(self):
-        x = SurveyReader(utils.path_to_text_fixture("hidden.xls"), default_name="hidden")
+        x = SurveyReader(
+            utils.path_to_text_fixture("hidden.xls"), default_name="hidden"
+        )
         x_results = x.to_json_dict()
 
         expected_dict = [

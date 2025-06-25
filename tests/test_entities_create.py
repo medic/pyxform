@@ -30,7 +30,9 @@ class EntitiesCreationTest(PyxformTestCase):
             xml__xpath_count=[
                 ("/h:html/h:head/x:model/x:instance/x:data/x:meta/x:entity/@update", 0),
             ],
-            xml__contains=['xmlns:entities="http://www.opendatakit.org/xforms/entities"'],
+            xml__contains=[
+                'xmlns:entities="http://www.opendatakit.org/xforms/entities"'
+            ],
         )
 
     def test_multiple_dataset_rows_in_entities_sheet__errors(self):
@@ -135,7 +137,9 @@ class EntitiesCreationTest(PyxformTestCase):
             ],
         )
 
-    def test_label_and_create_if_in_entities_sheet__expand_node_selectors_to_xpath(self):
+    def test_label_and_create_if_in_entities_sheet__expand_node_selectors_to_xpath(
+        self,
+    ):
         self.assertPyxformXform(
             name="data",
             md="""
@@ -177,7 +181,9 @@ class EntitiesCreationTest(PyxformTestCase):
             |          | type    | name  | label |
             |          | text    | a     | A     |
             """,
-            xml__excludes=['xmlns:entities="http://www.opendatakit.org/xforms/entities"'],
+            xml__excludes=[
+                'xmlns:entities="http://www.opendatakit.org/xforms/entities"'
+            ],
         )
 
     def test_entities_version__omitted_if_no_entities_sheet(self):

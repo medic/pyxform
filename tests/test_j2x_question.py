@@ -123,7 +123,9 @@ class Json2XformQuestionValidationTests(TestCase):
 
         self.s.add_child(q)
 
-        self.assertEqual(ctw(q.xml_control(survey=self.s)), expected_integer_control_xml)
+        self.assertEqual(
+            ctw(q.xml_control(survey=self.s)), expected_integer_control_xml
+        )
 
         if TESTING_BINDINGS:
             self.assertEqual(
@@ -250,7 +252,9 @@ class Json2XformQuestionValidationTests(TestCase):
 
         q = create_survey_element_from_dict(simple_decimal_question)
         self.s.add_child(q)
-        self.assertEqual(ctw(q.xml_control(survey=self.s)), expected_decimal_control_xml)
+        self.assertEqual(
+            ctw(q.xml_control(survey=self.s)), expected_decimal_control_xml
+        )
 
         if TESTING_BINDINGS:
             self.assertEqual(

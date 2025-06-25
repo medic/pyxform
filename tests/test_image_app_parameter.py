@@ -6,7 +6,9 @@ from tests.pyxform_test_case import PyxformTestCase
 
 
 class TestImageParameters(PyxformTestCase):
-    def test_adding_valid_android_package_name_in_image_with_supported_appearances(self):
+    def test_adding_valid_android_package_name_in_image_with_supported_appearances(
+        self,
+    ):
         appearances = ("", "annotate")
         md = """
         | survey |        |          |       |                                     |            |
@@ -92,7 +94,9 @@ class TestImageParameters(PyxformTestCase):
                     ],
                 )
 
-    def test_ignoring_android_package_name_in_image_with_not_supported_appearances(self):
+    def test_ignoring_android_package_name_in_image_with_not_supported_appearances(
+        self,
+    ):
         appearances = ("signature", "draw", "new-front")
         md = """
         | survey |        |          |       |                                     |            |
