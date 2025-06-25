@@ -35,6 +35,7 @@ class CustomTypesTest(PyxformTestCase):
 
         # Run the conversion and assert all binds and inputs exist
         self.assertPyxformXform(
+            name = "db",
             md=xls,
             xml__xpath_match=bind_xpaths + input_xpaths
         )
@@ -45,12 +46,14 @@ class CustomTypesTest(PyxformTestCase):
         | type   | name | label::en |
         | tel    | phone| Phone     |
         """
+
         # xpq can build the bind test
         xp_bind = xpq.model_instance_bind("phone", "tel")
         # xpq for the control <input> itself
         xp_input = xpq.body_label_inline("input", "phone", "Phone")
 
         self.assertPyxformXform(
+            name = "db",
             md=xls,
             xml__xpath_match=[xp_input],
             xml__xpath_count=[(xp_bind, 1)],
