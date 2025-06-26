@@ -11,7 +11,7 @@ class TestCustomTypesSimple(PyxformTestCase):
 
     def test_db_person_bind(self):
         self.assertPyxformXform(
-            name="db_person",
+            name="test_name",
             md="""
             | survey |               |           |
             |        | type          | name      | label::en |
@@ -23,7 +23,7 @@ class TestCustomTypesSimple(PyxformTestCase):
 
     def test_db_clinic_bind(self):
         self.assertPyxformXform(
-            name="db_clinic",
+            name="test_name",
             md="""
             | survey |              |           |
             |        | type         | name      | label::en |
@@ -34,7 +34,7 @@ class TestCustomTypesSimple(PyxformTestCase):
 
     def test_tel_bind(self):
         self.assertPyxformXform(
-            name="tel_phone",
+            name="test_name",
             md="""
             | survey |       |            |
             |        | type  | name       | label::en    |
