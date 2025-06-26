@@ -17,7 +17,7 @@ class TestCustomTypesSimple(PyxformTestCase):
             |        | type          | name      | label::en |
             |        | db:person     | person    | Person    |
             """,
-            # assert there’s exactly one <bind type="db:person" nodeset="/data/person">
+            # assert there exactly one <bind type="db:person" nodeset="/data/person">
             xml__xpath_match=[xpq.model_instance_bind("person", "db:person")],
         )
 
