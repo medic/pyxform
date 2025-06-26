@@ -1,21 +1,18 @@
-"""
-Testing medic types
-"""
 import re
 import textwrap
 from typing import Dict, List
 
-from pyxform.xls2xform import convert
 from tests.pyxform_test_case import PyxformTestCase
 from tests.xpath_helpers.questions import xpq
 
+
 def markdown_to_workbook_dict(md: str) -> Dict[str, List[Dict[str, str]]]:
     """
-    Parses a Markdown XLSForm (### survey + pipe tables) into a workbook_dict
-    that convert() understands.
+    Parse a Markdown-defined XLSForm (### survey + pipe tables)
+    into the ss_structure dict expected by PyxformTestCase.
     """
     workbook = {}
-    for section in re.split(r'^###\s+', md, flags=re.MULTILINE)[1:]:
+    for section in re.split(r"^###\s+", md, flags=re.MULTILINE)[1:]:
         lines = section.strip().splitlines()
         if not lines:
             continue
@@ -23,13 +20,13 @@ def markdown_to_workbook_dict(md: str) -> Dict[str, List[Dict[str, str]]]:
         if sheet != "survey":
             continue
         headers = [h.strip() for h in lines[1].split("|") if h.strip()]
-        rows = []
+        rows: List[Dict[str, str]] = []
         for row in lines[2:]:
             if not row.strip() or set(row.strip()) <= {"|", "-"}:
                 continue
             values = [v.strip() for v in row.split("|") if v.strip()]
             if len(values) != len(headers):
-                raise ValueError(f"Row length mismatch: {row}")
+                raise ValueError(f"Row length mismatch in survey: {row}")
             rows.append(dict(zip(headers, values)))
         workbook["survey"] = rows
     return workbook
@@ -37,30 +34,35 @@ def markdown_to_workbook_dict(md: str) -> Dict[str, List[Dict[str, str]]]:
 
 class TestCustomTypes(PyxformTestCase):
     """
-    End-to-end test that converts a mini-XLSForm with all custom types
-    and asserts the right <bind> and <input> elements are generated.
+    Tests for all custom types added in PR #27
+    (db:person, db:clinic, db:health_center, db:district_hospital, tel).
     """
 
-    def assertPyxformXform(self, *, md=None, errored=False, **kwargs):
-        # Preprocess Markdown into workbook_dict
+    def assertPyxformXform(self, *, md: str = None, errored: bool = False, **kwargs):
+        # If md is provided, convert it into ss_structure (workbook dict)
         if md is not None:
             md = textwrap.dedent(md)
-            kwargs["workbook_dict"] = markdown_to_workbook_dict(md)
-        super().assertPyxformXform(errored=errored, **kwargs)
+            ss = markdown_to_workbook_dict(md)
+            # clear md so base will ignore it
+            md = None
+            kwargs["ss_structure"] = ss
+        super().assertPyxformXform(
+            md=md, ss_structure=kwargs.get("ss_structure"), errored=errored, **kwargs
+        )
 
     def test_all_custom_types(self):
-        # Inline Markdown XLSForm definition
+        # Define a single survey sheet with all custom types
         xls = """
         ### survey
-        | type               | name               | label::en          |
-        | db:person          | person             | Person             |
-        | db:clinic          | clinic             | Clinic             |
-        | db:health_center   | health_center      | Health Center      |
-        | db:district_hospital | district_hospital | District Hospital |
-        | tel                | phone              | Phone Number       |
+        | type                 | name               | label::en          |
+        | db:person            | person             | Person             |
+        | db:clinic            | clinic             | Clinic             |
+        | db:health_center     | health_center      | Health Center      |
+        | db:district_hospital | district_hospital  | District Hospital |
+        | tel                  | phone              | Phone Number       |
         """
 
-        # Definition of (name, expected type) for each question
+        # List of (question name, expected bind type)
         custom_types = [
             ("person", "db:person"),
             ("clinic", "db:clinic"),
@@ -69,23 +71,23 @@ class TestCustomTypes(PyxformTestCase):
             ("phone", "tel"),
         ]
 
-        # Build the XPath assertions for <bind> and <input>
-        bind_asserts = [
+        # Build XPath assertions for binds
+        bind_xpaths = [
             xpq.model_instance_bind(name, qtype) for name, qtype in custom_types
         ]
-        input_asserts = [
+
+        # Build XPath assertions for input controls (labels must match exactly)
+        labels = [
+            "Person",
+            "Clinic",
+            "Health Center",
+            "District Hospital",
+            "Phone Number",
+        ]
+        input_xpaths = [
             xpq.body_label_inline("input", name, label)
-            for (name, _), label in zip(
-                custom_types,
-                ["Person", "Clinic", "Health Center", "District Hospital", "Phone Number"],
-                strict=True
-            )
+            for (name, _), label in zip(custom_types, labels, strict=True)
         ]
 
-        # Run conversion + assertions
-        self.assertPyxformXform(
-            md=xls,
-            xml__xpath_match=bind_asserts + input_asserts
-        )
-
-
+        # Run conversion and assert all binds and inputs appear exactly once
+        self.assertPyxformXform(md=xls, xml__xpath_match=bind_xpaths + input_xpaths)
