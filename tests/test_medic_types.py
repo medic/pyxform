@@ -62,5 +62,7 @@ class TestCustomTypesSimple(PyxformTestCase):
             |        | type                 | name      | label::en |
             |        | db:district_hospital | district  | District  |
             """,
-            xml__xpath_match=[xpq.model_instance_bind("district", "db:district_hospital")],
+            xml__xpath_match=[
+                xpq.model_instance_bind("district", "db:district_hospital")
+            ],
         )
