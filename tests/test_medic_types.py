@@ -42,3 +42,25 @@ class TestCustomTypesSimple(PyxformTestCase):
             """,
             xml__xpath_match=[xpq.model_instance_bind("phone", "tel")],
         )
+
+    def test_db_health_center_bind(self):
+        self.assertPyxformXform(
+            name="test_name",
+            md="""
+            | survey |                  |           |
+            |        | type             | name      | label::en |
+            |        | db:health_center | health    | Health    |
+            """,
+            xml__xpath_match=[xpq.model_instance_bind("health", "db:health_center")],
+        )
+
+    def test_db_district_hospital_bind(self):
+        self.assertPyxformXform(
+            name="test_name",
+            md="""
+            | survey |                      |           |
+            |        | type                 | name      | label::en |
+            |        | db:district_hospital | district  | District  |
+            """,
+            xml__xpath_match=[xpq.model_instance_bind("district", "db:district_hospital")],
+        )
