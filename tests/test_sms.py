@@ -17,7 +17,7 @@ class SMSTest(PyxformTestCase):
             |          | prefix    |          |       |           |
             |          | sms_test  |          |       |           |
             """,
-           xml__contains=['prefix="J1!data!"'],
+            xml__contains=['prefix="J1!data!"'],
         )
 
     def test_delimiter_only(self):
