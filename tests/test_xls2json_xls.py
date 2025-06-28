@@ -38,12 +38,13 @@ class BasicXls2JsonApiTests(TestCase):
 
             expected_dict = json.load(expected)
             expected_dict["sms_keyword"] = "J1!yes_or_no_question!"
-            expected_dict["sms_separator"] = "#"    
+            expected_dict["sms_separator"] = "#"
             self.assertEqual(expected_dict, result._pyxform)
-            
 
     def test_hidden(self):
-        x = SurveyReader(utils.path_to_text_fixture("hidden.xls"), default_name="hidden")
+        x = SurveyReader(
+            utils.path_to_text_fixture("hidden.xls"), default_name="hidden"
+        )
         x_results = x.to_json_dict()
 
         expected_dict = [
