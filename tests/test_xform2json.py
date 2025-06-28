@@ -58,7 +58,9 @@ class DumpAndLoadXForm2JsonTests(XFormTestCase):
         excluded_files = {"choice_filter_test.xlsx", "xlsform_spec_test.xlsx"}
 
         for filename, survey in self.surveys.items():
-            if filename in excluded_files: # Exculding 2 files which are not relevant for medic sms
+            if (
+                filename in excluded_files
+            ):  # Exculding 2 files which are not relevant for medic sms
                 continue
             with self.subTest(msg=filename):
                 survey_json = json.loads(survey.to_json())
@@ -74,7 +76,6 @@ class DumpAndLoadXForm2JsonTests(XFormTestCase):
                 observed = survey_from_dump.to_xml(pretty_print=False)
 
                 self.assertXFormEqual(expected, observed)
-
 
     def tearDown(self):
         for survey in self.surveys.values():
@@ -150,6 +151,8 @@ class TestXForm2JSON(PyxformTestCase):
         result = convert(xlsform=md)
         expected = result.xform
         generated_json = result._survey.to_json()
-        survey_from_builder = create_survey_element_from_dict(json.loads(generated_json))
+        survey_from_builder = create_survey_element_from_dict(
+            json.loads(generated_json)
+        )
         observed = survey_from_builder.to_xml(pretty_print=False)
         self.assertEqual(expected, observed)
