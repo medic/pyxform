@@ -124,7 +124,7 @@ class BuilderTests(TestCase):
             "default_language": "default",
             "id_string": "specify_other",
             "sms_keyword": "J1!specify_other!",  # CHT default
-+           "sms_separator": "#",               # CHT default
+            "sms_separator": "#",               # CHT default
             "choices": {
                 "sexes": [
                     {"label": {"English": "Male"}, "name": "male"},
@@ -217,7 +217,7 @@ class BuilderTests(TestCase):
             "name": "loop",
             "id_string": "loop",
             "sms_keyword": "J1!loop!",  # CHT default
-+           "sms_separator": "#",       # CHT default
+            "sms_separator": "#",       # CHT default
             "title": "loop",
             "type": "survey",
             "default_language": "default",

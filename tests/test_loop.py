@@ -20,7 +20,7 @@ class TestLoop(TestCase):
             "name": "data",
             "title": "simple_loop",
             "sms_keyword": "J1!simple_loop!",   # CHT default
-+           "sms_separator": "#",               # CHT default
+            "sms_separator": "#",               # CHT default
             "default_language": "default",
             "id_string": "simple_loop",
             "type": "survey",
@@ -72,7 +72,7 @@ class TestLoop(TestCase):
             "name": "data",
             "id_string": "another_loop",
             "sms_keyword": "J1!another_loop!",  # CHT default
-+           "sms_separator": "#",              # CHT default
+            "sms_separator": "#",              # CHT default
             "default_language": "default",
             "title": "another_loop",
             "type": "survey",
