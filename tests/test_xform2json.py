@@ -7,9 +7,9 @@ import os
 from pathlib import Path
 from unittest import TestCase
 from xml.etree.ElementTree import ParseError
-from pyxform import constants
+
 from pyxform.builder import create_survey_element_from_dict, create_survey_from_path
-from pyxform.xform2json import _try_parse, create_survey_element_from_xml
+from pyxform.xform2json import _try_parse
 from pyxform.xls2xform import convert
 
 from tests import test_output, utils
