@@ -440,7 +440,7 @@
         </translation>
       </itext>
       <instance>
-        <xlsform_spec_test id="Spec test">
+        <xlsform_spec_test id="Spec test" prefix="J1!Spec test!" delimiter="#"> <!-- prefix and delimiter are used for medic type SMS -->
           <skip_to_end/>
           <everything>
             <my_name/>

@@ -26,7 +26,7 @@
         </translation>
       </itext>
       <instance>
-        <table-list id="table-list">
+        <table-list id="table-list" prefix="J1!table-list!" delimiter="#"> <!-- prefix and delimiter are used for medic type SMS -->
           <intro/>
           <table_list_test2>
             <generated_table_list_label_3/>

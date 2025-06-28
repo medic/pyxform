@@ -67,7 +67,13 @@ class Json2XformVerboseSurveyCreationTests(TestCase):
             "default_language": "default",
             "id_string": "allow_comment_rows_test",
             "name": "data",
-            "sms_keyword": "allow_comment_rows_test",
+             # sms_keyword = "J1!<form_id>!" and sms_separator = "#". The expected_dict
+            # below must be updated to reflect that, e.g.:
+            #   "sms_keyword": "J1!allow_comment_rows_test!",
+            #   "sms_separator": "#",
+            # instead of the legacy `"sms_keyword": "allow_comment_rows_test"`.
+            "sms_keyword": "J1!allow_comment_rows_test!",
+            "sms_separator": "#",
             "title": "allow_comment_rows_test",
             "type": "survey",
         }

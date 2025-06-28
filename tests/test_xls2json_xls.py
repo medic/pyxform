@@ -26,7 +26,21 @@ class BasicXls2JsonApiTests(TestCase):
             xlsform=path_to_excel_file, warnings=[], form_name=path_to_excel_file.stem
         )
         with open(expected_output_path, encoding="utf-8") as expected:
-            self.assertEqual(json.load(expected), result._pyxform)
+            # The expected JSON fixture was created before the CHT fork added support for SMS-specific
+            # metadata like `sms_keyword` and `sms_separator`. These attributes are now automatically
+            # injected by the converter when missing in the input XLSForm.
+            #
+            # To keep the test passing without modifying the original fixture file, we patch the loaded
+            # dict with the expected SMS values for compatibility with CHT behavior.
+            #
+            # If additional SMS attributes are added in future changes, they should be patched here
+            # accordingly, or alternatively the fixture should be updated to include the new attributes.
+
+            expected_dict = json.load(expected)
+            expected_dict["sms_keyword"] = "J1!yes_or_no_question!"
+            expected_dict["sms_separator"] = "#"    
+            self.assertEqual(expected_dict, result._pyxform)
+            
 
     def test_hidden(self):
         x = SurveyReader(utils.path_to_text_fixture("hidden.xls"), default_name="hidden")

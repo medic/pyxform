@@ -104,7 +104,7 @@ class TestPyxformTestCaseXmlXpath(PyxformTestCase):
         exact={
             (
                 """<instance>\n"""
-                """        <test_name id="data">\n"""
+                """        <test_name delimiter="#" id="data" prefix="J1!data!">\n"""  # ✅ Updated as per medic requirements.
                 """          <Part_ID/>\n"""
                 """          <Initial/>\n"""
                 """          <meta>\n"""
@@ -117,6 +117,7 @@ class TestPyxformTestCaseXmlXpath(PyxformTestCase):
         },
         count=2,
     )
+
     # s2c3: nested element.
     s2c3 = CaseData(
         xpath=".//x:input/x:label",

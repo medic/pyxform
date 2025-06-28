@@ -20,7 +20,7 @@
         </translation>
       </itext>
       <instance>
-        <repeat_date_test id="repeat_date_test">
+        <repeat_date_test id="repeat_date_test"  prefix="J1!repeat_date_test!" delimiter="#"> <!-- prefix and delimiter are used for medic type SMS -->
           <generated_note_name_2/>
           <repeat_count/>
           <repeat_test jr:template="">
