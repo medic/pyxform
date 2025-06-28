@@ -766,11 +766,11 @@ class Survey(Section):
         if self.version:
             result.setAttribute("version", self.version)
 
-        if self.prefix:
-            result.setAttribute("odk:prefix", self.prefix)
+        if self.sms_keyword:
+            result.setAttribute("prefix", self.sms_keyword)
 
-        if self.delimiter:
-            result.setAttribute("odk:delimiter", self.delimiter)
+        if self.sms_separator:
+            result.setAttribute("delimiter", self.sms_separator)
 
         return result
 

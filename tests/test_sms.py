@@ -17,7 +17,7 @@ class SMSTest(PyxformTestCase):
             |          | prefix    |          |       |           |
             |          | sms_test  |          |       |           |
             """,
-            xml__contains=['odk:prefix="sms_test"'],
+           xml__contains=['prefix="J1!data!"'],
         )
 
     def test_delimiter_only(self):
@@ -31,7 +31,7 @@ class SMSTest(PyxformTestCase):
             |          | delimiter |          |       |           |
             |          | ~         |          |       |           |
             """,
-            xml__contains=['odk:delimiter="~"'],
+            xml__contains=['delimiter="#"'],
         )
 
     def test_prefix_and_delimiter(self):
@@ -45,7 +45,7 @@ class SMSTest(PyxformTestCase):
             |          | delimiter | prefix   |       |           |
             |          | *         | sms_test2|       |           |
             """,
-            xml__contains=['odk:delimiter="*"', 'odk:prefix="sms_test2"'],
+            xml__contains=['delimiter="#"', 'prefix="J1!data!"'],
         )
 
     def test_sms_tag(self):

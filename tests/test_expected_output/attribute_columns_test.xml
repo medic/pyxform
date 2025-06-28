@@ -448,7 +448,7 @@
         </translation>
       </itext>
       <instance>
-        <attribute_columns_test id="Spec test">
+        <attribute_columns_test id="Spec test" prefix="J1!Spec test!" delimiter="#"> <!-- prefix and delimiter are used for medic type SMS -->
           <skip_to_end testAttribute="test"/>
           <everything testAttribute="test">
             <my_name/>
