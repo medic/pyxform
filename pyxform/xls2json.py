@@ -196,9 +196,7 @@ def clean_text_values(
                 if strip_whitespace:
                     value = RE_WHITESPACE.sub(" ", value.strip())
                 # Replace "smart" quotes with regular quotes.
-                row[key] = RE_SMART_QUOTES.sub(
-                    lambda m: SMART_QUOTES[m.group(0)], value
-                )
+                row[key] = RE_SMART_QUOTES.sub(lambda m: SMART_QUOTES[m.group(0)], value)
                 # Check cross reference syntax.
                 validate_pyxform_reference_syntax(
                     value=value, sheet_name=sheet_name, row_number=row_number, key=key
@@ -564,9 +562,7 @@ def workbook_to_json(
 
     # ########## Entities sheet ###########
     entities_sheet = workbook_dict.get(constants.ENTITIES, [])
-    entities_sheet = clean_text_values(
-        sheet_name=constants.ENTITIES, data=entities_sheet
-    )
+    entities_sheet = clean_text_values(sheet_name=constants.ENTITIES, data=entities_sheet)
     entities_sheet = dealias_and_group_headers(
         dict_array=entities_sheet,
         header_aliases=aliases.entities_header,
@@ -733,8 +729,7 @@ def workbook_to_json(
                     new_dict["bind"] = new_dict.get("bind", {})
                     new_dict["bind"].update(
                         {
-                            "odk:"
-                            + constants.TRACK_CHANGES: parameters[
+                            "odk:" + constants.TRACK_CHANGES: parameters[
                                 constants.TRACK_CHANGES
                             ]
                         }
@@ -765,8 +760,7 @@ def workbook_to_json(
                     new_dict["bind"] = new_dict.get("bind", {})
                     new_dict["bind"].update(
                         {
-                            "odk:"
-                            + constants.IDENTIFY_USER: parameters[
+                            "odk:" + constants.IDENTIFY_USER: parameters[
                                 constants.IDENTIFY_USER
                             ]
                         }
@@ -836,16 +830,13 @@ def workbook_to_json(
                     new_dict["bind"] = new_dict.get("bind", {})
                     new_dict["bind"].update(
                         {
-                            "odk:"
-                            + constants.LOCATION_MAX_AGE: parameters[
+                            "odk:" + constants.LOCATION_MAX_AGE: parameters[
                                 constants.LOCATION_MAX_AGE
                             ],
-                            "odk:"
-                            + constants.LOCATION_MIN_INTERVAL: parameters[
+                            "odk:" + constants.LOCATION_MIN_INTERVAL: parameters[
                                 constants.LOCATION_MIN_INTERVAL
                             ],
-                            "odk:"
-                            + constants.LOCATION_PRIORITY: parameters[
+                            "odk:" + constants.LOCATION_PRIORITY: parameters[
                                 constants.LOCATION_PRIORITY
                             ],
                         }
@@ -999,9 +990,7 @@ def workbook_to_json(
                     new_json_dict[constants.COLUMNS] = choices[list_name]
 
                 # Generate a new node for the jr:count column so xpath expressions can be used.
-                repeat_count_expression = new_json_dict.get("control", {}).get(
-                    "jr:count"
-                )
+                repeat_count_expression = new_json_dict.get("control", {}).get("jr:count")
                 if repeat_count_expression:
                     # Simple expressions don't require a new node, they can reference directly.
                     if not is_pyxform_reference(value=repeat_count_expression):
@@ -1046,9 +1035,9 @@ def workbook_to_json(
                                 "name": "generated_table_list_label_" + str(row_number),
                             }
                             if "label" in new_json_dict:
-                                generated_label_element[constants.LABEL] = (
-                                    new_json_dict[constants.LABEL]
-                                )
+                                generated_label_element[constants.LABEL] = new_json_dict[
+                                    constants.LABEL
+                                ]
                                 del new_json_dict[constants.LABEL]
                             if "hint" in new_json_dict:
                                 generated_label_element["hint"] = new_json_dict["hint"]
@@ -1093,9 +1082,7 @@ def workbook_to_json(
                 ):
                     if not external_choices:
                         k = constants.EXTERNAL_CHOICES
-                        msg = (
-                            "There should be an external_choices sheet in this xlsform."
-                        )
+                        msg = "There should be an external_choices sheet in this xlsform."
                         similar = find_sheet_misspellings(key=k, keys=workbook_keys)
                         if similar is not None:
                             msg = msg + " " + similar
@@ -1173,8 +1160,7 @@ def workbook_to_json(
                         itemset_choices is not None
                         and isinstance(itemset_choices, list)
                         and not any(
-                            c[constants.NAME]
-                            == constants.OR_OTHER_CHOICE[constants.NAME]
+                            c[constants.NAME] == constants.OR_OTHER_CHOICE[constants.NAME]
                             for c in itemset_choices
                         )
                     ):
@@ -1297,18 +1283,15 @@ def workbook_to_json(
                         error_message = ROW_FORMAT_STRING % row_number
                         error_message += (
                             " Badly formatted table list,"
-                            " list names don't match: "
-                            + table_list
-                            + " vs. "
-                            + list_name
+                            " list names don't match: " + table_list + " vs. " + list_name
                         )
                         raise PyXFormError(error_message)
 
                     if constants.CONTROL not in new_json_dict:
                         new_json_dict[constants.CONTROL] = {}
-                    new_json_dict[constants.CONTROL][
-                        constants.APPEARANCE
-                    ] = constants.LIST_NOLABEL
+                    new_json_dict[constants.CONTROL][constants.APPEARANCE] = (
+                        constants.LIST_NOLABEL
+                    )
                 parent_children_array.append(new_json_dict)
                 if specify_other_question:
                     parent_children_array.append(specify_other_question)
@@ -1480,11 +1463,7 @@ def workbook_to_json(
                 try:
                     float(parameters["warning-accuracy"])
                     new_dict["control"].update(
-                        {
-                            "unacceptableAccuracyThreshold": parameters[
-                                "warning-accuracy"
-                            ]
-                        }
+                        {"unacceptableAccuracyThreshold": parameters["warning-accuracy"]}
                     )
                 except ValueError as wa_err:
                     raise PyXFormError(
