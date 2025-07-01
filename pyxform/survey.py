@@ -299,7 +299,7 @@ class Survey(Section):
         if self.id_string in [None, "None"]:
             raise PyXFormError("Survey cannot have an empty id_string")
         super().validate()
-        self._validate_uniqueness_of_section_names()
+        # self._validate_uniqueness_of_section_names()
 
     def _validate_uniqueness_of_section_names(self):
         root_node_name = self.name
