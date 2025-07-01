@@ -35,10 +35,11 @@ class BuilderTests(TestCase):
         with self.assertRaises(PyXFormError):
             utils.build_survey("unknown_question_type.xls")
 
-    def test_uniqueness_of_section_names(self):
-        # Looking at the xls file, I think this test might be broken.
-        survey = utils.build_survey("group_names_must_be_unique.xls")
-        self.assertRaises(Exception, survey.to_xml)
+    # Medic allows duplicate names
+    # def test_uniqueness_of_section_names(self):
+    #     # Looking at the xls file, I think this test might be broken.
+    #     survey = utils.build_survey("group_names_must_be_unique.xls")
+    #     self.assertRaises(Exception, survey.to_xml)
 
     def setUp(self):
         self.this_directory = os.path.dirname(__file__)
