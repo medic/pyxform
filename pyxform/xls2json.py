@@ -26,12 +26,8 @@ from pyxform.utils import PYXFORM_REFERENCE_REGEX, coalesce, default_is_dynamic
 from pyxform.validators.pyxform import choices as vc
 from pyxform.validators.pyxform import parameters_generic, select_from_file
 from pyxform.validators.pyxform import question_types as qt
-from pyxform.validators.pyxform.android_package_name import (
-    validate_android_package_name,
-)
-from pyxform.validators.pyxform.pyxform_reference import (
-    validate_pyxform_reference_syntax,
-)
+from pyxform.validators.pyxform.android_package_name import validate_android_package_name
+from pyxform.validators.pyxform.pyxform_reference import validate_pyxform_reference_syntax
 from pyxform.validators.pyxform.sheet_misspellings import find_sheet_misspellings
 from pyxform.validators.pyxform.translations_checks import SheetTranslations
 from pyxform.xls2json_backends import csv_to_dict, xls_to_dict, xlsx_to_dict
@@ -569,9 +565,7 @@ def workbook_to_json(
         use_double_colons=False,
     )
     entity_declaration = get_entity_declaration(
-        entities_sheet=entities_sheet.data,
-        workbook_dict=workbook_dict,
-        warnings=warnings,
+        entities_sheet=entities_sheet.data, workbook_dict=workbook_dict, warnings=warnings
     )
 
     # ########## Survey sheet ###########

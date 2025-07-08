@@ -117,7 +117,6 @@ class TestPyxformTestCaseXmlXpath(PyxformTestCase):
         },
         count=2,
     )
-
     # s2c3: nested element.
     s2c3 = CaseData(
         xpath=".//x:input/x:label",
