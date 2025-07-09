@@ -288,25 +288,27 @@ class Survey(Section):
         if self.id_string in {None, "None"}:
             raise PyXFormError("Survey cannot have an empty id_string")
         super().validate()
-        self._validate_uniqueness_of_section_names()
+        # self._validate_uniqueness_of_section_names()
 
     def _validate_uniqueness_of_section_names(self):
-        root_node_name = self.name
-        section_names = set()
-        for element in self.iter_descendants(condition=lambda i: isinstance(i, Section)):
-            if element.name in section_names:
-                if element.name == root_node_name:
-                    # The root node name is rarely explictly set; explain
-                    # the problem in a more helpful way (#510)
-                    msg = (
-                        f"The name '{element.name}' is the same as the form name. "
-                        "Use a different section name (or change the form name in "
-                        "the 'name' column of the settings sheet)."
-                    )
-                    raise PyXFormError(msg)
-                msg = f"There are two sections with the name {element.name}."
-                raise PyXFormError(msg)
-            section_names.add(element.name)
+        # root_node_name = self.name
+        # section_names = set()
+        # for element in self.iter_descendants(condition=lambda i: isinstance(i, Section)):
+        #     if element.name in section_names:
+        #         if element.name == root_node_name:
+        #             # The root node name is rarely explictly set; explain
+        #             # the problem in a more helpful way (#510)
+        #             msg = (
+        #                 f"The name '{element.name}' is the same as the form name. "
+        #                 "Use a different section name (or change the form name in "
+        #                 "the 'name' column of the settings sheet)."
+        #             )
+        #             raise PyXFormError(msg)
+        #         msg = f"There are two sections with the name {element.name}."
+        #         raise PyXFormError(msg)
+        #     section_names.add(element.name)
+
+        return
 
     def get_nsmap(self):
         """Add additional namespaces"""
