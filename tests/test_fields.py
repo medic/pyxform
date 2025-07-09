@@ -179,22 +179,23 @@ class FieldsTests(PyxformTestCase):
             ],
         )
 
-    def test_duplicate_form_name_in_section_name(self):
-        """
-        Ensure that the section name cannot be the same as form name
-        """
-        self.assertPyxformXform(
-            name="foo",
-            md="""
-            | Survey   |             |         |               |
-            |          | Type        | Name    | Label         |
-            |          | begin group | foo     | A group       |
-            |          | text        | a       | Enter text    |
-            |          | end group   |         |               |
-            """,
-            errored=True,
-            error__contains=["The name 'foo' is the same as the form name"],
-        )
+    # Medic allows duplicate section names
+    # def test_duplicate_form_name_in_section_name(self):
+    #     """
+    #     Ensure that the section name cannot be the same as form name
+    #     """
+    #     self.assertPyxformXform(
+    #         name="foo",
+    #         md="""
+    #         | Survey   |             |         |               |
+    #         |          | Type        | Name    | Label         |
+    #         |          | begin group | foo     | A group       |
+    #         |          | text        | a       | Enter text    |
+    #         |          | end group   |         |               |
+    #         """,
+    #         errored=True,
+    #         error__contains=["The name 'foo' is the same as the form name"],
+    #     )
 
     def test_field_name_may_match_form_name(self):
         """
