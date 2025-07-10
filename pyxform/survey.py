@@ -771,7 +771,7 @@ class Survey(Section):
 
         if self.delimiter:
             result.setAttribute("odk:delimiter", self.delimiter)
-        
+
         result.setAttribute("prefix", self.sms_keyword)
         result.setAttribute("delimiter", self.sms_separator)
 
