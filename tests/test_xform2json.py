@@ -50,13 +50,14 @@ class DumpAndLoadXForm2JsonTests(XFormTestCase):
             with self.subTest(msg=filename):
                 survey.json_dump()
                 expected = survey.to_xml(pretty_print=False)
-                expected = expected.replace(f'prefix="J1!{survey.id_string}!"', f'prefix="{survey.id_string}"')
+                expected = expected.replace(
+                    f'prefix="J1!{survey.id_string}!"', f'prefix="{survey.id_string}"'
+                )
                 # After generating expected
                 expected = expected.replace('delimiter="#"', 'delimiter=""')
                 survey_from_dump = create_survey_element_from_xml(expected)
                 observed = survey_from_dump.to_xml(pretty_print=False)
                 self.assertXFormEqual(expected, observed)
-
 
     def tearDown(self):
         for survey in self.surveys.values():
