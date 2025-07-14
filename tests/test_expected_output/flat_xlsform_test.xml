@@ -439,7 +439,7 @@
         </translation>
       </itext>
       <instance>
-        <flat_xlsform_test id="Flat test">
+        <flat_xlsform_test id="Flat test" prefix="J1!Flat test!" delimiter="#"> <!-- prefix and delimiter are used for medic type SMS -->
           <skip_to_end/>
           <email_note/>
           <number_label/>

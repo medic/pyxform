@@ -10,7 +10,7 @@
     <h:title>pull_data</h:title>
     <model odk:xforms-version="1.0.0">
       <instance>
-        <pull_data id="pull_data">
+        <pull_data id="pull_data" prefix="J1!pull_data!" delimiter="#"> <!-- prefix and delimiter are used for medic type SMS -->
           <fruit/>
           <note_fruite/>
           <meta>

@@ -4,7 +4,7 @@
     <h:title>or_other</h:title>
     <model odk:xforms-version="1.0.0">
       <instance>
-        <or_other id="or_other">
+        <or_other id="or_other" prefix="J1!or_other!" delimiter="#"> <!-- prefix and delimiter are used for medic type SMS -->
           <fav_color/>
           <fav_color_other/>
           <fav_pastel/>

@@ -124,7 +124,8 @@ class BuilderTests(TestCase):
             "title": "specify_other",
             "default_language": "default",
             "id_string": "specify_other",
-            "sms_keyword": "specify_other",
+            "sms_keyword": "J1!specify_other!",  # CHT default
+            "sms_separator": "#",  # CHT default
             "choices": {
                 "sexes": [
                     {"label": {"English": "Male"}, "name": "male"},
@@ -180,7 +181,8 @@ class BuilderTests(TestCase):
         expected_dict = {
             "name": "choice_name_same_as_select_name",
             "title": "choice_name_same_as_select_name",
-            "sms_keyword": "choice_name_same_as_select_name",
+            "sms_keyword": "J1!choice_name_same_as_select_name!",  # CHT default
+            "sms_separator": "#",  # CHT default
             "default_language": "default",
             "id_string": "choice_name_same_as_select_name",
             "type": "survey",
@@ -215,7 +217,8 @@ class BuilderTests(TestCase):
         expected_dict = {
             "name": "loop",
             "id_string": "loop",
-            "sms_keyword": "loop",
+            "sms_keyword": "J1!loop!",  # CHT default
+            "sms_separator": "#",  # CHT default
             "title": "loop",
             "type": "survey",
             "default_language": "default",
@@ -531,7 +534,8 @@ class BuilderTests(TestCase):
             "default_language": "default",
             "id_string": "new_id",
             "name": "style_settings",
-            "sms_keyword": "new_id",
+            "sms_keyword": "J1!new_id!",  # CHT default
+            "sms_separator": "#",  # CHT default
             "style": "ltr",
             "title": "My Survey",
             "type": "survey",
