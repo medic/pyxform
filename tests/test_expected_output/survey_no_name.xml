@@ -4,7 +4,7 @@
     <h:title>survey_no_name</h:title>
     <model odk:xforms-version="1.0.0">
       <instance>
-        <data id="survey_no_name">
+        <data id="survey_no_name"  prefix="J1!survey_no_name!" delimiter="#"> <!-- prefix and delimiter are used for medic type SMS -->
           <state/>
           <meta>
             <instanceID/>

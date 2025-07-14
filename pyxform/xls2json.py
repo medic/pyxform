@@ -486,13 +486,18 @@ def workbook_to_json(
     id_string = settings.get(
         constants.ID_STRING, coalesce(fallback_form_name, constants.DEFAULT_FORM_NAME)
     )
-    sms_keyword = settings.get(constants.SMS_KEYWORD, id_string)
+    # Replace default sms_keyword with Medic Mobile default;
+    # sms_keyword = settings.get(constants.SMS_KEYWORD, id_string)   # default
+    sms_keyword = settings.get(constants.SMS_KEYWORD, "J1!" + id_string + "!")
+    sms_separator = settings.get(constants.SMS_SEPARATOR, "#")
+
     json_dict = {
         constants.TYPE: constants.SURVEY,
         constants.NAME: form_name,
         constants.TITLE: id_string,
         constants.ID_STRING: id_string,
         constants.SMS_KEYWORD: sms_keyword,
+        constants.SMS_SEPARATOR: sms_separator,
         constants.DEFAULT_LANGUAGE_KEY: default_language,
         # By default the version is based on the date and time yyyymmddhh
         # Leaving default version out for now since it might cause

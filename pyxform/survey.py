@@ -774,6 +774,9 @@ class Survey(Section):
         if self.delimiter:
             result.setAttribute("odk:delimiter", self.delimiter)
 
+        result.setAttribute("prefix", self.sms_keyword)
+        result.setAttribute("delimiter", self.sms_separator)
+
         return result
 
     def _add_to_nested_dict(self, dicty, path, value):

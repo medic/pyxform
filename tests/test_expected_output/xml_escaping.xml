@@ -20,7 +20,7 @@
         </translation>
       </itext>
       <instance>
-        <xml_escaping id="xml_escaping">
+        <xml_escaping id="xml_escaping" prefix="J1!xml_escaping!" delimiter="#"> <!-- prefix and delimiter are used for medic type SMS -->
           <a/>
           <b/>
           <table_list_3/>
