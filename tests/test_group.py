@@ -18,7 +18,8 @@ class GroupTests(TestCase):
             "name": "group",
             "title": "group",
             "id_string": "group",
-            "sms_keyword": "group",
+            "sms_keyword": "J1!group!",
+            "sms_separator": "#",
             "default_language": "default",
             "type": "survey",
             "children": [

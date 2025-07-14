@@ -47,7 +47,7 @@ class XMLTests(XFormTestCase):
         </translation>
       </itext>
       <instance>
-        <yes_or_no_question id="yes_or_no_question">
+        <yes_or_no_question id="yes_or_no_question" prefix="J1!yes_or_no_question!" delimiter="#"> <!-- prefix and delimiter are used for medic type SMS -->
           <good_day/>
           <meta>
             <instanceID/>

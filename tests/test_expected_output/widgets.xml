@@ -22,7 +22,7 @@
         </translation>
       </itext>
       <instance>
-        <widgets id="widgets">
+        <widgets id="widgets" prefix="J1!widgets!" delimiter="#"> <!-- prefix and delimiter are used for medic type SMS -->
           <my_string/>
           <my_int/>
           <my_decimal>18.31</my_decimal>

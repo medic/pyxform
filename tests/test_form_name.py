@@ -14,7 +14,9 @@ class TestFormName(PyxformTestCase):
             |          | type      | name | label     |
             |          | text      | city | City Name |
             """,
-            instance__contains=['<test_name id="data">'],
+            name="test_name",
+            # Match the opening <test_name> tag (it now includes prefix & delimiter attrs)
+            instance__contains=['<test_name delimiter="#" id="data" prefix="J1!data!">'],
             model__contains=['<bind nodeset="/test_name/city" type="string"/>'],
             xml__contains=[
                 '<input ref="/test_name/city">',
@@ -34,7 +36,8 @@ class TestFormName(PyxformTestCase):
                |        | text | city | City Name |
                """,
             name="data",
-            instance__contains=['<data id="data">'],
+            # Match the opening <data> tag (it now includes prefix & delimiter attrs)
+            instance__contains=['<data delimiter="#" id="data" prefix="J1!data!">'],
             model__contains=['<bind nodeset="/data/city" type="string"/>'],
             xml__contains=[
                 '<input ref="/data/city">',
@@ -55,7 +58,9 @@ class TestFormName(PyxformTestCase):
                |        | text | city | City Name |
                """,
             name="some-name",
-            instance__contains=['<some-name id="data">'],
+            # instance__contains=['<some-name id="data">'],
+            # Match the opening <some-name> tag (it now includes prefix & delimiter attrs)
+            instance__contains=['<some-name delimiter="#" id="data" prefix="J1!data!">'],
             model__contains=['<bind nodeset="/some-name/city" type="string"/>'],
             xml__contains=[
                 '<input ref="/some-name/city">',
