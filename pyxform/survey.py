@@ -1037,83 +1037,96 @@ class Survey(Section):
                 translation_key = f"{item.get_xpath()}:label"
                 _set_up_media_translations(media_dict, translation_key)
 
-    def itext(self) -> DetachableElement:
+    def _itext_nodes(
+        self, translation: dict[str, dict]
+    ) -> Generator[tuple[list["DetachableElement"], str], None, None]:
         """
-        This function creates the survey's itext nodes from _translations
-        @see _setup_media _setup_translations
-        itext nodes are localized images/audio/video/text
-        @see http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines
+        Yield (itext_value_nodes, text_id) for each entry in a single-language
+        translation dict, skipping entries whose 'long' value is 'NO_LABEL'.
         """
-        result = []
-        for lang, translation in self._translations.items():
-            if lang == self.default_language:
-                result.append(node("translation", lang=lang, default="true()"))
-            else:
-                result.append(node("translation", lang=lang))
+        for label_name, content in translation.items():
+            # only skip pure NO_LABEL in the 'long' slot
+            if isinstance(content, dict) and content.get("long") == "NO_LABEL":
+                continue
 
-            for label_name, content in translation.items():
-                itext_nodes = []
-                label_type = label_name.partition(":")[-1]
+            itext_nodes: list[DetachableElement] = []
+            label_type = label_name.partition(":")[-1]
 
-                if not isinstance(content, dict):
-                    raise PyXFormError("""Invalid value for `content`.""")
+            # build the same set of <value> nodes you had inline
+            for media_type, media_value in content.items():
+                if media_type == constants.TYPE:
+                    continue
 
-                for media_type, media_value in content.items():
-                    # Ignore key indicating Question or Choice translation type.
-                    if media_type == constants.TYPE:
-                        continue
-                    if isinstance(media_value, dict):
-                        value, output_inserted = self.insert_output_values(
-                            media_value["text"], context=media_value["output_context"]
-                        )
-                    else:
-                        value, output_inserted = self.insert_output_values(media_value)
+                if isinstance(media_value, dict):
+                    value, output_inserted = self.insert_output_values(
+                        media_value["text"], context=media_value["output_context"]
+                    )
+                else:
+                    value, output_inserted = self.insert_output_values(media_value)
 
-                    if label_type == "hint":
-                        if media_type == "guidance":
-                            itext_nodes.append(
-                                node(
-                                    "value",
-                                    value,
-                                    form="guidance",
-                                    toParseString=output_inserted,
-                                )
-                            )
-                        else:
-                            itext_nodes.append(
-                                node("value", value, toParseString=output_inserted)
-                            )
-                        continue
-
-                    if media_type == "long":
-                        # I'm ignoring long types for now because I don't know
-                        # how they are supposed to work.
-                        itext_nodes.append(
-                            node("value", value, toParseString=output_inserted)
-                        )
-                    elif media_type in {"image", "big-image"}:
-                        if value != "-":
-                            itext_nodes.append(
-                                node(
-                                    "value",
-                                    f"jr://images/{value}",
-                                    form=media_type,
-                                    toParseString=output_inserted,
-                                )
-                            )
-                    elif value != "-":
+                # hints
+                if label_type == "hint":
+                    if media_type == "guidance":
                         itext_nodes.append(
                             node(
                                 "value",
-                                f"jr://{media_type}/{value}",
+                                value,
+                                form="guidance",
+                                toParseString=output_inserted,
+                            )
+                        )
+                    else:
+                        itext_nodes.append(
+                            node("value", value, toParseString=output_inserted)
+                        )
+                    continue
+
+                # long (label) values
+                if media_type == "long":
+                    itext_nodes.append(
+                        node("value", value, toParseString=output_inserted)
+                    )
+
+                # images (and big-image if you want)
+                elif media_type in {"image", "big-image"}:
+                    if value != "-":
+                        itext_nodes.append(
+                            node(
+                                "value",
+                                f"jr://images/{value}",
                                 form=media_type,
                                 toParseString=output_inserted,
                             )
                         )
 
-                result[-1].appendChild(node("text", *itext_nodes, id=label_name))
+                # other media types (audio, video, etc.)
+                elif value != "-":
+                    itext_nodes.append(
+                        node(
+                            "value",
+                            f"jr://{media_type}/{value}",
+                            form=media_type,
+                            toParseString=output_inserted,
+                        )
+                    )
 
-        return node("itext", *result)
+            yield itext_nodes, label_name
+
+
+
+    def itext(self) -> DetachableElement:
+            result = []
+            for lang, lang_trans in self._translations.items():
+                if lang == self.default_language:
+                    result.append(node("translation", lang=lang, default="true()"))
+                else:
+                    result.append(node("translation", lang=lang))
+
+                for nodes, text_id in self._itext_nodes(lang_trans):
+                    result[-1].appendChild(node("text", *nodes, id=text_id))
+
+            return node("itext", *result)
+
 
     def date_stamp(self):
         """Returns a date string with the format of %Y_%m_%d."""

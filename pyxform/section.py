@@ -265,11 +265,8 @@ class GroupedSection(Section):
         if not self.flat:
             attributes["ref"] = self.get_xpath()
 
-        # only emit a <label> if its not purely NO_LABEL
-        # if label is a dict , strip out pure NO_LABEL entries
-        if isinstance(self.label, dict) and any(v != "NO_LABEL" for v in self.label.values()):
-            children.append(self.xml_label(survey=survey))
-        elif self.label:
+        # check if only has 'NO_LABEL' label then skips
+        if self.has_label():
             children.append(self.xml_label(survey=survey))
         for n in Section.xml_control(self, survey=survey):
             children.append(n)

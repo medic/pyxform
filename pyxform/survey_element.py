@@ -452,6 +452,18 @@ class SurveyElement(Mapping):
             hasattr(self, const.MEDIA) and isinstance(self.media, dict) and self.media
         )
 
+    def has_label(self) -> bool:
+        """
+        Return False if the label is exactly 'NO_LABEL' (in all languages).
+        Otherwise behave like bool(self.label).
+        """
+        lbl = self.label
+        if isinstance(lbl, dict):
+            # if all entries are "NO_LABEL", consider it absent
+            return any(v != "NO_LABEL" for v in lbl.values())
+        # simple string: false if empty or the literal "NO_LABEL"
+        return bool(lbl and lbl != "NO_LABEL")
+
     def get_setvalue_node_for_dynamic_default(self, survey: "Survey", in_repeat=False):
         if (
             not hasattr(self, "default")
@@ -501,24 +513,29 @@ class SurveyElement(Mapping):
         Return a list containing one node for the label and if there
         is a hint one node for the hint.
         """
+
+        # Must have at least one of: a real label, media, hint, or guidance_hint
+        msg = f"The survey element named '{self.name}' has no label or hint."
+        if not any((self.label, self.media, self.hint)) and self.guidance_hint:
+            raise PyXFormError(msg)
+
         result = []
         label_appended = False
-        if self.label or self.media:
+        if self.has_label() or self.media:
             result.append(self.xml_label(survey=survey))
             label_appended = True
 
+        # Emit <hint>; if no label yet append an empty <label/> first
         if self.hint or self.guidance_hint:
             if not label_appended:
                 result.append(self.xml_label(survey=survey))
             result.append(self.xml_hint(survey=survey))
 
-        msg = f"The survey element named '{self.name}' has no label or hint."
         if len(result) == 0:
             raise PyXFormError(msg)
 
         # Guidance hint alone is not OK since they may be hidden by default.
-        if not any((self.label, self.media, self.hint)) and self.guidance_hint:
-            raise PyXFormError(msg)
+
 
         # big-image must combine with image
         if (
