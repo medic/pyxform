@@ -1112,21 +1112,18 @@ class Survey(Section):
 
             yield itext_nodes, label_name
 
-
-
     def itext(self) -> DetachableElement:
-            result = []
-            for lang, lang_trans in self._translations.items():
-                if lang == self.default_language:
-                    result.append(node("translation", lang=lang, default="true()"))
-                else:
-                    result.append(node("translation", lang=lang))
+        result = []
+        for lang, lang_trans in self._translations.items():
+            if lang == self.default_language:
+                result.append(node("translation", lang=lang, default="true()"))
+            else:
+                result.append(node("translation", lang=lang))
 
-                for nodes, text_id in self._itext_nodes(lang_trans):
-                    result[-1].appendChild(node("text", *nodes, id=text_id))
+            for nodes, text_id in self._itext_nodes(lang_trans):
+                result[-1].appendChild(node("text", *nodes, id=text_id))
 
-            return node("itext", *result)
-
+        return node("itext", *result)
 
     def date_stamp(self):
         """Returns a date string with the format of %Y_%m_%d."""

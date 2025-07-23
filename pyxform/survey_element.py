@@ -513,15 +513,11 @@ class SurveyElement(Mapping):
         Return a list containing one node for the label and if there
         is a hint one node for the hint.
         """
-            # ─── Short-circuit pure NO_LABEL fields ─────────────────────────────
+        # ─── Short-circuit pure NO_LABEL fields ─────────────────────────────
         lbl = self.label
         # single-string NO_LABEL, or all-langs NO_LABEL
-        if (
-            (isinstance(lbl, str) and lbl == "NO_LABEL")
-            or (
-                isinstance(lbl, dict)
-                and all(v == "NO_LABEL" for v in lbl.values())
-            )
+        if (isinstance(lbl, str) and lbl == "NO_LABEL") or (
+            isinstance(lbl, dict) and all(v == "NO_LABEL" for v in lbl.values())
         ):
             return []
 
@@ -544,9 +540,6 @@ class SurveyElement(Mapping):
 
         if len(result) == 0:
             raise PyXFormError(msg)
-
-        # Guidance hint alone is not OK since they may be hidden by default.
-
 
         # big-image must combine with image
         if (
