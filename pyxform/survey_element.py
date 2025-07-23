@@ -513,6 +513,17 @@ class SurveyElement(Mapping):
         Return a list containing one node for the label and if there
         is a hint one node for the hint.
         """
+            # ─── Short-circuit pure NO_LABEL fields ─────────────────────────────
+        lbl = self.label
+        # single-string NO_LABEL, or all-langs NO_LABEL
+        if (
+            (isinstance(lbl, str) and lbl == "NO_LABEL")
+            or (
+                isinstance(lbl, dict)
+                and all(v == "NO_LABEL" for v in lbl.values())
+            )
+        ):
+            return []
 
         # Must have at least one of: a real label, media, hint, or guidance_hint
         msg = f"The survey element named '{self.name}' has no label or hint."
