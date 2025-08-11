@@ -6,7 +6,7 @@
       <instance>
         <data id="survey_no_name"  prefix="J1!survey_no_name!" delimiter="#"> <!-- prefix and delimiter are used for medic type SMS -->
           <state/>
-          <meta>
+          <meta tag="hidden">
             <instanceID/>
           </meta>
         </data>

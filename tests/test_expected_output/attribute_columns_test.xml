@@ -525,7 +525,7 @@
             <FALSE/>
           </everything>
           <launch/>
-          <meta>
+          <meta tag="hidden">
             <instanceID/>
             <instanceName/>
           </meta>
