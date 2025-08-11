@@ -47,7 +47,7 @@ class AuditTest(PyxformTestCase):
             |        | audit  |          |       |
             """,
             xml__contains=[
-                "<meta tag=\"hidden\">",
+                '<meta tag="hidden">',
                 "<audit/>",
                 "</meta>",
                 '<bind nodeset="/meta_audit/meta/audit" type="binary"/>',
@@ -63,7 +63,7 @@ class AuditTest(PyxformTestCase):
             |        | audit  |          |       |            |
             """,
             xml__contains=[
-                "<meta tag=\"hidden\">",
+                '<meta tag="hidden">',
                 "<audit/>",
                 "</meta>",
                 '<bind nodeset="/meta_audit/meta/audit" type="binary"/>',
@@ -135,7 +135,7 @@ class AuditTest(PyxformTestCase):
             |        | audit  |   audit  | location-priority=balanced, location-min-interval=60, location-max-age=300 |
             """,
             xml__contains=[
-                "<meta tag=\"hidden\">",
+                '<meta tag="hidden">',
                 "<audit/>",
                 "</meta>",
                 '<bind nodeset="/meta_audit/meta/audit" type="binary" odk:location-max-age="300" odk:location-min-interval="60" odk:location-priority="balanced"/>',
@@ -151,7 +151,7 @@ class AuditTest(PyxformTestCase):
             |        | audit  |   audit  | track-changes=true |
             """,
             xml__contains=[
-                "<meta tag=\"hidden\">",
+                '<meta tag="hidden">',
                 "<audit/>",
                 "</meta>",
                 '<bind nodeset="/meta_audit/meta/audit" type="binary" odk:track-changes="true"/>',
@@ -167,7 +167,7 @@ class AuditTest(PyxformTestCase):
             |        | audit  |   audit  | track-changes=false |
             """,
             xml__contains=[
-                "<meta tag=\"hidden\">",
+                '<meta tag="hidden">',
                 "<audit/>",
                 "</meta>",
                 '<bind nodeset="/meta_audit/meta/audit" type="binary" odk:track-changes="false"/>',
@@ -207,7 +207,7 @@ class AuditTest(PyxformTestCase):
             |        | audit  |   audit  | identify-user=true |
             """,
             xml__contains=[
-                "<meta tag=\"hidden\">",
+                '<meta tag="hidden">',
                 "<audit/>",
                 "</meta>",
                 '<bind nodeset="/meta_audit/meta/audit" type="binary" odk:identify-user="true"/>',
@@ -223,7 +223,7 @@ class AuditTest(PyxformTestCase):
             |        | audit  |   audit  | identify-user=false |
             """,
             xml__contains=[
-                "<meta tag=\"hidden\">",
+                '<meta tag="hidden">',
                 "<audit/>",
                 "</meta>",
                 '<bind nodeset="/meta_audit/meta/audit" type="binary" odk:identify-user="false"/>',
@@ -251,7 +251,7 @@ class AuditTest(PyxformTestCase):
             |        | audit  |   audit  | track-changes-reasons=on-form-edit |
             """,
             xml__contains=[
-                "<meta tag=\"hidden\">",
+                '<meta tag="hidden">',
                 "<audit/>",
                 "</meta>",
                 '<bind nodeset="/meta_audit/meta/audit" type="binary" odk:track-changes-reasons="on-form-edit"/>',
@@ -267,7 +267,7 @@ class AuditTest(PyxformTestCase):
             |        | audit  |   audit  | location-priority=balanced, track-changes=true, location-min-interval=60, location-max-age=300 |
             """,
             xml__contains=[
-                "<meta tag=\"hidden\">",
+                '<meta tag="hidden">',
                 "<audit/>",
                 "</meta>",
                 '<bind nodeset="/meta_audit/meta/audit" type="binary" odk:location-max-age="300" odk:location-min-interval="60" odk:location-priority="balanced" odk:track-changes="true"/>',

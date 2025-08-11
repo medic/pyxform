@@ -20,8 +20,8 @@ class MetaTagHiddenTest(PyxformTestCase):
             """,
             xml__contains=[
                 '<meta tag="hidden">',
-                '<instanceID/>',
-                '</meta>',
+                "<instanceID/>",
+                "</meta>",
             ],
         )
 
@@ -36,9 +36,9 @@ class MetaTagHiddenTest(PyxformTestCase):
             """,
             xml__contains=[
                 '<meta tag="hidden">',
-                '<audit/>',
-                '<instanceID/>',
-                '</meta>',
+                "<audit/>",
+                "<instanceID/>",
+                "</meta>",
             ],
         )
 
@@ -55,8 +55,8 @@ class MetaTagHiddenTest(PyxformTestCase):
                 '<meta tag="hidden">',
                 'prefix="J1!data!"',  # Default survey name is "data"
                 'delimiter="#"',
-                '<instanceID/>',
-                '</meta>',
+                "<instanceID/>",
+                "</meta>",
             ],
         )
 
@@ -73,11 +73,11 @@ class MetaTagHiddenTest(PyxformTestCase):
             """,
             xml__contains=[
                 '<meta tag="hidden">',
-                '<dev_id/>',
-                '<start/>',
-                '<end/>',
-                '<instanceID/>',
-                '</meta>',
+                "<dev_id/>",
+                "<start/>",
+                "<end/>",
+                "<instanceID/>",
+                "</meta>",
             ],
         )
 
@@ -93,8 +93,8 @@ class MetaTagHiddenTest(PyxformTestCase):
             """,
             xml__contains=[
                 '<meta tag="hidden">',
-                '<instanceID/>',
-                '</meta>',
+                "<instanceID/>",
+                "</meta>",
             ],
         )
 
@@ -112,7 +112,7 @@ class MetaTagHiddenTest(PyxformTestCase):
             """,
             xml__contains=[
                 '<meta tag="hidden">',
-                '<instanceID/>',
-                '</meta>',
+                "<instanceID/>",
+                "</meta>",
             ],
         )
