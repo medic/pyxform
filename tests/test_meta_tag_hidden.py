@@ -24,7 +24,7 @@ class MetaTagHiddenTest(PyxformTestCase):
                 '</meta>',
             ],
         )
-        
+
     def test_meta_tag_with_audit(self):
         """Test that meta tag='hidden' is present when audit field is used."""
         self.assertPyxformXform(
@@ -41,7 +41,7 @@ class MetaTagHiddenTest(PyxformTestCase):
                 '</meta>',
             ],
         )
-        
+
     def test_meta_tag_with_sms_attributes(self):
         """Test that meta tag='hidden' is present with CHT SMS prefix and delimiter."""
         self.assertPyxformXform(
@@ -53,13 +53,13 @@ class MetaTagHiddenTest(PyxformTestCase):
             """,
             xml__contains=[
                 '<meta tag="hidden">',
-                'prefix="J1!data!"',  # Default survey name is "data" 
+                'prefix="J1!data!"',  # Default survey name is "data"
                 'delimiter="#"',
                 '<instanceID/>',
                 '</meta>',
             ],
         )
-        
+
     def test_meta_tag_with_multiple_fields(self):
         """Test that meta tag='hidden' works with multiple metadata fields."""
         self.assertPyxformXform(
@@ -80,7 +80,7 @@ class MetaTagHiddenTest(PyxformTestCase):
                 '</meta>',
             ],
         )
-        
+
     def test_meta_tag_consistent_across_forms(self):
         """Test that all forms get the meta tag='hidden' attribute consistently."""
         # Test a simple form
@@ -97,7 +97,7 @@ class MetaTagHiddenTest(PyxformTestCase):
                 '</meta>',
             ],
         )
-        
+
         # Test a form with choices
         self.assertPyxformXform(
             name="choice_form",
