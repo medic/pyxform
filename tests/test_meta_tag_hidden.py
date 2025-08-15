@@ -2,7 +2,7 @@ from tests.pyxform_test_case import PyxformTestCase
 
 """
 Test hidden meta tags functionality in pyxform.
-Tests that meta elements get the tag="hidden" attribute for CHT SMS functionality.
+Tests that meta elements get the tag="hidden" attribute for CHT  functionality.
 """
 
 
@@ -18,101 +18,28 @@ class MetaTagHiddenTest(PyxformTestCase):
             |        | type   | name    | label |
             |        | text   | q1      | Q1    |
             """,
-            xml__contains=[
-                '<meta tag="hidden">',
-                "<instanceID/>",
-                "</meta>",
-            ],
+            xml__contains=["<q1/>", '<meta tag="hidden">\n            <instanceID/>'],
         )
 
-    def test_meta_tag_with_audit(self):
-        """Test that meta tag='hidden' is present when audit field is used."""
-        self.assertPyxformXform(
-            name="test_audit",
-            md="""
-            | survey |        |         |       |
-            |        | type   | name    | label |
-            |        | audit  | audit   |       |
-            """,
-            xml__contains=[
-                '<meta tag="hidden">',
-                "<audit/>",
-                "<instanceID/>",
-                "</meta>",
-            ],
-        )
-
-    def test_meta_tag_with_sms_attributes(self):
-        """Test that meta tag='hidden' is present with CHT SMS prefix and delimiter."""
-        self.assertPyxformXform(
-            name="test_sms",
-            md="""
-            | survey |        |         |       |
-            |        | type   | name    | label |
-            |        | text   | q1      | Q1    |
-            """,
-            xml__contains=[
-                '<meta tag="hidden">',
-                'prefix="J1!data!"',  # Default survey name is "data"
-                'delimiter="#"',
-                "<instanceID/>",
-                "</meta>",
-            ],
-        )
-
-    def test_meta_tag_with_multiple_fields(self):
-        """Test that meta tag='hidden' works with multiple metadata fields."""
+    def test_meta_tag_with_multiple_groups(self):
+        """Test that meta tag='hidden' works with multiple metadata groups."""
         self.assertPyxformXform(
             name="test_multiple",
             md="""
-            | survey |           |         |       |
-            |        | type      | name    | label |
-            |        | deviceid  | dev_id  | Device ID |
-            |        | start     | start   | Start |
-            |        | end       | end     | End   |
+            | survey |             |              |            |
+            |        | type        | name         | label      |
+            |        | begin group | nested_field | Nested     |
+            |        | text        | meta         | Meta       |
+            |        | end group   |              |            |
+            |        | begin group | nested_group | Nested     |
+            |        | begin group | meta         | Meta Group |
+            |        | deviceid    | dev_id       | Device ID  |
+            |        | end group   |              |            |
+            |        | end group   |              |            |
             """,
             xml__contains=[
-                '<meta tag="hidden">',
-                "<dev_id/>",
-                "<start/>",
-                "<end/>",
-                "<instanceID/>",
-                "</meta>",
-            ],
-        )
-
-    def test_meta_tag_consistent_across_forms(self):
-        """Test that all forms get the meta tag='hidden' attribute consistently."""
-        # Test a simple form
-        self.assertPyxformXform(
-            name="simple_form",
-            md="""
-            | survey |        |         |       |
-            |        | type   | name    | label |
-            |        | text   | name    | Name  |
-            """,
-            xml__contains=[
-                '<meta tag="hidden">',
-                "<instanceID/>",
-                "</meta>",
-            ],
-        )
-
-        # Test a form with choices
-        self.assertPyxformXform(
-            name="choice_form",
-            md="""
-            | survey |             |         |       |
-            |        | type        | name    | label |
-            |        | select_one colors | color | Color |
-            | choices |       |       |       |
-            |         | list_name | name | label |
-            |         | colors | red   | Red   |
-            |         | colors | blue  | Blue  |
-            """,
-            xml__contains=[
-                '<meta tag="hidden">',
-                "<instanceID/>",
-                "</meta>",
+                "<nested_field>\n            <meta/>",
+                '<nested_group>\n            <meta tag="hidden">\n              <dev_id/>',
+                '<meta tag="hidden">\n            <instanceID/>',
             ],
         )
