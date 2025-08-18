@@ -40,7 +40,7 @@
             <happy_sad_brian/>
             <happy_sad_michael/>
           </happy_sad_table>
-          <meta>
+          <meta tag="hidden">
             <instanceID/>
           </meta>
         </table-list>
