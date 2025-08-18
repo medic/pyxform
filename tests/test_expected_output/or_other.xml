@@ -8,7 +8,7 @@
           <fav_color/>
           <fav_color_other/>
           <fav_pastel/>
-          <meta>
+          <meta tag="hidden">
             <instanceID/>
           </meta>
         </or_other>

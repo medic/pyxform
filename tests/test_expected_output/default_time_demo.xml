@@ -6,7 +6,7 @@
       <instance>
         <default_time_demo id="default_time_demo" prefix="J1!default_time_demo!" delimiter="#"> <!-- prefix and delimiter are used for medic type SMS -->
           <start_time>09:30:00</start_time>
-          <meta>
+          <meta tag="hidden">
             <instanceID/>
           </meta>
         </default_time_demo>
