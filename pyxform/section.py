@@ -122,6 +122,10 @@ class Section(SurveyElement):
             attributes[key] = survey.insert_xpaths(value, self)
         result = node(self.name, **attributes)
 
+        # Add tag="hidden" to meta elements (Issue #21)
+        if self.name == "meta":
+            result.setAttribute("tag", "hidden")
+
         for child in self.children:
             repeating_template = None
             if hasattr(child, "flat") and child.get("flat"):

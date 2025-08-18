@@ -107,7 +107,7 @@ class TestPyxformTestCaseXmlXpath(PyxformTestCase):
                 """        <test_name delimiter="#" id="data" prefix="J1!data!">\n"""  # ✅ Updated as per medic requirements.
                 """          <Part_ID/>\n"""
                 """          <Initial/>\n"""
-                """          <meta>\n"""
+                """          <meta tag="hidden">\n"""
                 """            <instanceID/>\n"""
                 """          </meta>\n"""
                 """        </test_name>\n"""

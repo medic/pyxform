@@ -489,7 +489,7 @@
           <_1/>
           <FALSE/>
           <launch/>
-          <meta>
+          <meta tag="hidden">
             <instanceID/>
             <instanceName/>
           </meta>
