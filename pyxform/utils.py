@@ -118,7 +118,7 @@ def node(*args, **kwargs) -> DetachableElement:
     for k, v in kwargs.items():
         # if k in blocked_attributes:
         #     continue
-        if k == u'tag' and v == tag:
+        if k == "tag" and v == tag:
             continue
         if k == "toParseString":
             if v is True and len(unicode_args) == 1:
