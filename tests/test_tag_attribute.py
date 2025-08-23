@@ -21,7 +21,7 @@ class TagRestrictionTest(PyxformTestCase):
             xml__contains=[
                 "<q1/>",
                 '<meta tag="hidden">',
-                '<instanceID/>',
+                "<instanceID/>",
             ],
         )
 
@@ -44,6 +44,6 @@ class TagRestrictionTest(PyxformTestCase):
             xml__contains=[
                 'tag="hidden"',
                 '<meta tag="hidden">',
-                '<instanceID/>',
+                "<instanceID/>",
             ],
         )
