@@ -1,49 +1,52 @@
 from tests.pyxform_test_case import PyxformTestCase
 
 """
-Test hidden meta tags functionality in pyxform.
-Tests that meta elements get the tag="hidden" attribute for CHT  functionality.
+Ensures that fields marked with 'hidden' in the instance::tag column 
+get the tag="hidden" attribute in the compiled XForm.
 """
 
-
 class TagRestrictionTest(PyxformTestCase):
-    """Test cases for hidden meta tags."""
+    """Test cases for tag attribute functionality."""
 
-    def test_meta_tag_hidden_by_default(self):
-        """Test that meta elements get tag='hidden' attribute by default."""
+    def test_instance_tag_hidden_attribute(self):
+        """Test that fields with instance::tag 'hidden' get tag='hidden' attribute."""
         self.assertPyxformXform(
-            name="test_meta",
+            name="test_hidden_tags",
             md="""
-            | survey |        |         |       |
-            |        | type   | name    | label |
-            |        | text   | q1      | Q1    |
+            | survey |             |                     |                     |               |
+            |        | type        | name                | label               | instance::tag |
+            |        | text        | patient_name        | Patient Name        |               |
+            |        | integer     | patient_age_years   | Age in Years        | hidden        |
+            |        | integer     | patient_age_months  | Age in Months       | hidden        |
+            |        | begin group | data                | Data Group          | hidden        |
+            |        | text        | field1              | Field 1             |               |
+            |        | end group   |                     |                     |               |
             """,
             xml__contains=[
-                "<q1/>",
-                '<meta tag="hidden">',
-                "<instanceID/>",
+                '<patient_age_years tag="hidden"/>',
+                '<patient_age_months tag="hidden"/>',
+                '<data tag="hidden">',
+                '<patient_name/>',  # Should NOT have tag attribute
+                '<field1/>',       
             ],
         )
 
-    def test_meta_tag_with_multiple_groups(self):
-        """Test that meta tag='hidden' works with multiple metadata groups."""
+    def test_nested_groups_with_hidden_tags(self):
+        """Test hidden tags work with nested groups."""
         self.assertPyxformXform(
-            name="test_multiple",
+            name="test_nested_hidden",
             md="""
-            | survey |             |              |            |
-            |        | type        | name         | label      |
-            |        | begin group | nested_field | Nested     |
-            |        | text        | meta         | Meta       |
-            |        | end group   |              |            |
-            |        | begin group | nested_group | Nested     |
-            |        | begin group | meta         | Meta Group |
-            |        | deviceid    | dev_id       | Device ID  |
-            |        | end group   |              |            |
-            |        | end group   |              |            |
+            | survey |             |              |                |               |
+            |        | type        | name         | label          | instance::tag |
+            |        | begin group | outer_group  | Outer Group    |               |
+            |        | text        | field1       | Field 1        |               |
+            |        | begin group | inner_group  | Inner Group    | hidden        |
+            |        | text        | field2       | Field 2        |               |
+            |        | end group   |              |                |               |
+            |        | end group   |              |                |               |
             """,
             xml__contains=[
-                'tag="hidden"',
-                '<meta tag="hidden">',
-                "<instanceID/>",
+                '<inner_group tag="hidden">',
+                '<outer_group>',  # Should NOT have tag attribute
             ],
         )
