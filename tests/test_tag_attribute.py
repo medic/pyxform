@@ -5,6 +5,7 @@ Ensures that fields marked with 'hidden' in the instance::tag column
 get the tag="hidden" attribute in the compiled XForm.
 """
 
+
 class TagRestrictionTest(PyxformTestCase):
     """Test cases for tag attribute functionality."""
 
@@ -26,8 +27,8 @@ class TagRestrictionTest(PyxformTestCase):
                 '<patient_age_years tag="hidden"/>',
                 '<patient_age_months tag="hidden"/>',
                 '<data tag="hidden">',
-                '<patient_name/>',  # Should NOT have tag attribute
-                '<field1/>',       
+                "<patient_name/>",  # Should NOT have tag attribute
+                "<field1/>",
             ],
         )
 
@@ -47,6 +48,6 @@ class TagRestrictionTest(PyxformTestCase):
             """,
             xml__contains=[
                 '<inner_group tag="hidden">',
-                '<outer_group>',  # Should NOT have tag attribute
+                "<outer_group>",  # Should NOT have tag attribute
             ],
         )
