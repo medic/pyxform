@@ -1,7 +1,7 @@
 from tests.pyxform_test_case import PyxformTestCase
 
 """
-Ensures that fields marked with 'hidden' in the instance::tag column 
+Ensures that fields marked with 'hidden' in the instance::tag column
 get the tag="hidden" attribute in the compiled XForm.
 """
 
