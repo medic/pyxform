@@ -107,7 +107,7 @@ def node(*args, **kwargs) -> DetachableElement:
     kwargs -- attributes
     returns a xml.dom.minidom.Element
     """
-    blocked_attributes = {"tag"}
+    # blocked_attributes = {"tag"}
     tag = args[0] if len(args) > 0 else kwargs["tag"]
     args = args[1:]
     result = DetachableElement(tag)
@@ -118,7 +118,9 @@ def node(*args, **kwargs) -> DetachableElement:
 
     # Convert the kwargs xml attribute dictionary to a xml.dom.minidom.Element.
     for k, v in kwargs.items():
-        if k in blocked_attributes:
+        # if k in blocked_attributes:
+        #     continue
+        if k == "tag" and v == tag:
             continue
         if k == "toParseString":
             if v is True and len(unicode_args) == 1:
