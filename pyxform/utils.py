@@ -81,7 +81,9 @@ class DetachableElement(Element):
 
 
 @lru_cache(maxsize=64)
-def escape_text_for_xml(text: str, attribute: bool = False) -> str:
+def escape_text_for_xml(text: str | None, attribute: bool = False) -> str:
+    if text is None:
+        return ""
     chars = set(text)
     if any(c in chars for c in XML_TEXT_SUBS):
         text = text.translate(XML_TEXT_TABLE)
